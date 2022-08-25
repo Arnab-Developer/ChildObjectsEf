@@ -62,4 +62,26 @@ app.MapGet("/delete-item-in-order", async (
     await mediator.Send(command);
 });
 
+app.MapGet("/func1", async (
+    IMediator mediator,
+    int orderId,
+    string dateTime,
+    int itemIdToUpdate,
+    string itemName,
+    int itemQuantity,
+    int itemIdToDelete) =>
+{
+    DateTime orderDateTime = DateTime.Parse(dateTime);
+
+    Func1Command command = new(
+        orderId,
+        orderDateTime,
+        itemIdToUpdate,
+        itemName,
+        itemQuantity,
+        itemIdToDelete);
+
+    await mediator.Send(command);
+});
+
 app.Run();
