@@ -3,10 +3,11 @@
 public class Order
 {
     private readonly List<OrderItem> _items;
+    private DateTime _orderDate;
 
     public int Id { get; private set; }
 
-    public DateTime OrderDate { get; private set; }    
+    public DateTime OrderDate { get; set; }
 
     public IEnumerable<OrderItem> Items { get => _items.AsEnumerable(); }
 
