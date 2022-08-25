@@ -39,9 +39,9 @@ public class DeleteItemFromOrderCommandHandlerTests
         Assert.True(isSuccess);
         Assert.Single(order.Items);
 
-        Assert.Equal("item1", order.Items.First(i => i.GetCurrentId() == 1).GetCurrentName());
-        Assert.Equal(10, order.Items.First(i => i.GetCurrentId() == 1).GetCurrentQuantity());
+        Assert.Equal("item1", order.Items.First(i => i.Id == 1).Name);
+        Assert.Equal(10, order.Items.First(i => i.Id == 1).Quantity);
 
-        Assert.Throws<InvalidOperationException>(() => order.Items.First(i => i.GetCurrentId() == 2));
+        Assert.Throws<InvalidOperationException>(() => order.Items.First(i => i.Id == 2));
     }
 }
