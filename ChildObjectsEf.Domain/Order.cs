@@ -8,8 +8,9 @@ public class Order
 
     public IEnumerable<OrderItem> Items { get => _items.AsEnumerable(); }
 
-    public Order(DateTime orderDate)
+    public Order(int id, DateTime orderDate)
     {
+        _id = id;
         _orderDate = orderDate;
         _items = new List<OrderItem>();
     }
@@ -18,9 +19,9 @@ public class Order
 
     public DateTime GetCurrentDate() => _orderDate;
 
-    public void AddItem(string name, int quantity)
+    public void AddItem(int id, string name, int quantity)
     {
-        OrderItem orderItem = new(name, quantity);
+        OrderItem orderItem = new(id, name, quantity);
         _items.Add(orderItem);
     }
 

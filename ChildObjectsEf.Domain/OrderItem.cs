@@ -2,16 +2,17 @@
 
 public class OrderItem
 {
-    private int _id;
+    internal int _id;
     private string _name;
     private int _quantity;
     private Order _order;
 
-    public OrderItem(string name, int quantity)
+    public OrderItem(int id, string name, int quantity)
     {
+        _id = id;
         _name = name;
         _quantity = quantity;
-        _order = new Order(default);
+        _order = new Order(default, default);
     }
 
     public int GetCurrentId() => _id;

@@ -6,9 +6,11 @@ public class CreateOrderCommandHandlerTests
     public async Task Can_CreateOrderCommandHandler_CreateProperOrder()
     {
         // Arrange
-        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
+        int orderId = Randomizer<int>.Create();
         DateTime orderDateTime = Randomizer<DateTime>.Create();
-        CreateOrderCommand createOrderCommand = new(orderDateTime);
+
+        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
+        CreateOrderCommand createOrderCommand = new(orderId, orderDateTime);
         CancellationToken cancellationToken = new();
 
         IRequestHandler<CreateOrderCommand, int> requestHandler = 

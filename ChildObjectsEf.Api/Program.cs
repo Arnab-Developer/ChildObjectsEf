@@ -23,9 +23,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/create-order", async (IMediator mediator, DateTime orderDateTime) =>
+app.MapGet("/create-order", async (IMediator mediator, int orderId, DateTime orderDateTime) =>
 {
-    CreateOrderCommand createOrderCommand = new(orderDateTime);
+    CreateOrderCommand createOrderCommand = new(orderId, orderDateTime);
     await mediator.Send(createOrderCommand);
 })
 .WithName("CreateOrder");

@@ -2,20 +2,20 @@
 
 namespace ChildObjectsEf.Api.Commands;
 
-internal class AddItemInOrderCommand : IRequest<bool>
+internal class UpdateItemInOrderCommand : IRequest<bool>
 {
     public int OrderId { get; set; }
 
-    public int OrderItemId { get; set; }
+    public int ItemId { get; set; }
 
     public string ItemName { get; set; }
 
     public int ItemQuantity { get; set; }
 
-    public AddItemInOrderCommand(int orderId, int orderItemId, string itemName, int itemQuantity)
+    public UpdateItemInOrderCommand(int orderId, int itemId, string itemName, int itemQuantity)
     {
         OrderId = orderId;
-        OrderItemId = orderItemId;
+        ItemId = itemId;
         ItemName = itemName;
         ItemQuantity = itemQuantity;
     }
