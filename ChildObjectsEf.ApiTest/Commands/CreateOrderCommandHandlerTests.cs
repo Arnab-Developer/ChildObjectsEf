@@ -15,7 +15,7 @@ public class CreateOrderCommandHandlerTests
             new CreateOrderCommandHandler(childObjectsEfRepoMock.Object);
 
         childObjectsEfRepoMock
-            .Setup(s => s.CreateOrderAsync(It.Is<Order>(o => o.OrderDate == orderDateTime)))
+            .Setup(s => s.CreateOrderAsync(It.Is<Order>(o => o.GetCurrentDate() == orderDateTime)))
             .ReturnsAsync(205);
 
         // Act
@@ -23,7 +23,7 @@ public class CreateOrderCommandHandlerTests
 
         // Assert
         childObjectsEfRepoMock
-            .Verify(v => v.CreateOrderAsync(It.Is<Order>(o => o.OrderDate == orderDateTime)),
+            .Verify(v => v.CreateOrderAsync(It.Is<Order>(o => o.GetCurrentDate() == orderDateTime)),
                 Times.Once);
 
         childObjectsEfRepoMock
