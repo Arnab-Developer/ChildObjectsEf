@@ -2,6 +2,10 @@ using ChildObjectsEf.Api.Commands;
 using ChildObjectsEf.Data;
 using ChildObjectsEf.Domain;
 using MediatR;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("ChildObjectsEf.ApiTest")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

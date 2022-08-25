@@ -13,7 +13,7 @@ internal class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, i
     }
 
     async Task<int> IRequestHandler<CreateOrderCommand, int>.Handle(
-        CreateOrderCommand request, 
+        CreateOrderCommand request,
         CancellationToken cancellationToken)
     {
         Order order = new(request.OrderDateTime);
