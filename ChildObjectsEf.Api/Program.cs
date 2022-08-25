@@ -9,10 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(typeof(Program));
 builder.Services.AddTransient<IChildObjectsEfRepo, ChildObjectsEfRepo>();
-
-builder.Services.AddSqlServer<ChildObjectsEfContext>(
-    builder.Configuration.GetConnectionString("ChildObjectsEfConnection"),
-    x => x.MigrationsAssembly("ChildObjectsEf.Data"));
+builder.Services.AddSqlServer<ChildObjectsEfContext>(builder.Configuration.GetConnectionString("ChildObjectsEfConnection"));
 
 WebApplication app = builder.Build();
 

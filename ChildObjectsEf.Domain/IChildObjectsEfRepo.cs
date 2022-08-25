@@ -2,7 +2,7 @@
 
 public interface IChildObjectsEfRepo
 {
-    public void CreateOrder(DateTime orderDate);
+    public Task<int> CreateOrderAsync(Order order);
 
     public void AddItemInOrder(int orderId, string itemName, int itemQuantity);
 
@@ -13,4 +13,6 @@ public interface IChildObjectsEfRepo
     public void RemoveItemFromOrder(int orderId, int itemId);
 
     public void DeleteOrder(int orderId);
+
+    public Task SaveAllAsync();
 }

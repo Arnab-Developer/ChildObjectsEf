@@ -1,12 +1,22 @@
 ﻿using ChildObjectsEf.Domain;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ChildObjectsEf.Data;
 
 public class ChildObjectsEfRepo : IChildObjectsEfRepo
 {
-    void IChildObjectsEfRepo.CreateOrder(DateTime orderDate)
+    private readonly ChildObjectsEfContext _childObjectsEfContext;
+
+    public ChildObjectsEfRepo(ChildObjectsEfContext childObjectsEfContext)
     {
-        throw new NotImplementedException();
+        _childObjectsEfContext = childObjectsEfContext;
+    }
+
+    async Task<int> IChildObjectsEfRepo.CreateOrderAsync(Order order)
+    {
+        EntityEntry<Order> entry = await _childObjectsEfContext.Orders.AddAsync(order);
+        Order newOrder = entry.Entity;
+        return newOrder.Id;
     }
 
     void IChildObjectsEfRepo.AddItemInOrder(int orderId, string itemName, int itemQuantity)
@@ -32,5 +42,10 @@ public class ChildObjectsEfRepo : IChildObjectsEfRepo
     void IChildObjectsEfRepo.DeleteOrder(int orderId)
     {
         throw new NotImplementedException();
+    }
+
+    async Task IChildObjectsEfRepo.SaveAllAsync()
+    {
+        await _childObjectsEfContext.SaveChangesAsync();
     }
 }
