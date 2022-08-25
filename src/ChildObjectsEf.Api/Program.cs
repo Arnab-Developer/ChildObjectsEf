@@ -23,12 +23,43 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/create-order", async (IMediator mediator, string dateTime) =>
+app.MapGet("/create-order", async (
+    IMediator mediator, 
+    string dateTime) =>
 {
     DateTime orderDateTime = DateTime.Parse(dateTime);
-    CreateOrderCommand createOrderCommand = new(orderDateTime);
-    await mediator.Send(createOrderCommand);
-})
-.WithName("CreateOrder");
+    CreateOrderCommand command = new(orderDateTime);
+    await mediator.Send(command);
+});
+
+app.MapGet("/add-item-in-order", async (
+    IMediator mediator, 
+    int orderId, 
+    string itemName, 
+    int itemQuantity) =>
+{
+    AddItemInOrderCommand command = new(orderId, itemName, itemQuantity);
+    await mediator.Send(command);
+});
+
+app.MapGet("/update-item-in-order", async (
+    IMediator mediator,
+    int orderId,
+    int itemId,
+    string itemName,
+    int itemQuantity) =>
+{
+    UpdateItemInOrderCommand command = new(orderId, itemId, itemName, itemQuantity);
+    await mediator.Send(command);
+});
+
+app.MapGet("/delete-item-in-order", async (
+    IMediator mediator,
+    int orderId,
+    int itemId) =>
+{
+    DeleteItemFromOrderCommand command = new(orderId, itemId);
+    await mediator.Send(command);
+});
 
 app.Run();
