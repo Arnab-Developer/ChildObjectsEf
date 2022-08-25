@@ -1,7 +1,4 @@
-﻿using ChildObjectsEf.Domain;
-using Microsoft.EntityFrameworkCore;
-
-namespace ChildObjectsEf.Data;
+﻿namespace ChildObjectsEf.Data;
 
 public class ChildObjectsEfContext : DbContext
 {

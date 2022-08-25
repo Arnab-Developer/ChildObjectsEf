@@ -1,6 +1,4 @@
-﻿using ChildObjectsEf.Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ChildObjectsEf.Data;
 
