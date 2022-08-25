@@ -41,10 +41,10 @@ public class UpdateItemInOrderCommandHandlerTests
 
         Assert.True(isSuccess);
 
-        Assert.Equal("item1", order.Items.First(i => i.GetCurrentId() == 1).GetCurrentName());
-        Assert.Equal(10, order.Items.First(i => i.GetCurrentId() == 1).GetCurrentQuantity());
+        Assert.Equal("item1", order.Items.First(i => i.Id == 1).Name);
+        Assert.Equal(10, order.Items.First(i => i.Id == 1).Quantity);
 
-        Assert.Equal("updated item", order.Items.First(i => i.GetCurrentId() == 2).GetCurrentName());
-        Assert.Equal(106, order.Items.First(i => i.GetCurrentId() == 2).GetCurrentQuantity());
+        Assert.Equal("updated item", order.Items.First(i => i.Id == 2).Name);
+        Assert.Equal(106, order.Items.First(i => i.Id == 2).Quantity);
     }
 }

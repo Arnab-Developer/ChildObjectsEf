@@ -17,7 +17,7 @@ public class ChildObjectsEfRepo : IChildObjectsEfRepo
     {
         Order order = await _childObjectsEfContext.Orders
             .Include(o => o.Items)
-            .FirstAsync(o => o.GetCurrentId() == orderId);
+            .FirstAsync(o => o.Id == orderId);
 
         return order;
     }
@@ -26,7 +26,7 @@ public class ChildObjectsEfRepo : IChildObjectsEfRepo
     {
         EntityEntry<Order> entry = await _childObjectsEfContext.Orders.AddAsync(order);
         Order newOrder = entry.Entity;
-        return newOrder.GetCurrentId();
+        return newOrder.Id;
     }
 
     async Task IChildObjectsEfRepo.SaveAllAsync()

@@ -38,6 +38,6 @@ public class AddItemInOrderCommandHandlerTests
                 Times.Once);
 
         Assert.True(isSuccess);
-        Assert.Contains(itemName, order.Items.Select(i => i.GetCurrentName()));
+        Assert.Contains(itemName, order.Items.Select(i => i.Name));
     }
 }
