@@ -1,7 +1,4 @@
-﻿using ChildObjectsEf.Domain;
-using MediatR;
-
-namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Api.Commands;
 
 internal class DeleteItemFromOrderCommandHandler : IRequestHandler<DeleteItemFromOrderCommand, bool>
 {

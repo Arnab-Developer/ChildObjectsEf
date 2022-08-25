@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Api.Commands;
 
 internal class AddItemInOrderCommand : IRequest<bool>
 {

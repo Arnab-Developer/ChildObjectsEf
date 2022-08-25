@@ -1,7 +1,5 @@
 using ChildObjectsEf.Api.Commands;
 using ChildObjectsEf.Data;
-using ChildObjectsEf.Domain;
-using MediatR;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("ChildObjectsEf.ApiTest")]
