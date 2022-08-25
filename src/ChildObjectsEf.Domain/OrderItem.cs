@@ -2,26 +2,19 @@
 
 public class OrderItem
 {
-    internal int _id;
-    private string _name;
-    private int _quantity;
-    private Order _order;
+    public int Id { get; internal set; }
+
+    public string Name { get; internal set; }
+
+    public int Quantity { get; internal set; }
+
+    public Order Order { get; internal set; }
 
     public OrderItem(int id, string name, int quantity)
     {
-        _id = id;
-        _name = name;
-        _quantity = quantity;
-        _order = new Order(default, default);
+        Id = id;
+        Name = name;
+        Quantity = quantity;
+        Order = new Order(default, default);
     }
-
-    public int GetCurrentId() => _id;
-
-    public string GetCurrentName() => _name;
-
-    public int GetCurrentQuantity() => _quantity;
-
-    internal void ChangeName(string name) => _name = name;
-
-    internal void ChangeQuantity(int quantity) => _quantity = quantity;
 }
