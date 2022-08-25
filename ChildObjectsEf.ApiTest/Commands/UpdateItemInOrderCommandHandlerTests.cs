@@ -45,6 +45,6 @@ public class UpdateItemInOrderCommandHandlerTests
         Assert.Equal(10, order.Items.First(i => i.GetCurrentId() == 1).GetCurrentQuantity());
 
         Assert.Equal("updated item", order.Items.First(i => i.GetCurrentId() == 2).GetCurrentName());
-        Assert.Equal(106, order.Items.First(i => i.GetCurrentId() == 2).GetCurrentQuantity());        
+        Assert.Equal(106, order.Items.First(i => i.GetCurrentId() == 2).GetCurrentQuantity());
     }
 }

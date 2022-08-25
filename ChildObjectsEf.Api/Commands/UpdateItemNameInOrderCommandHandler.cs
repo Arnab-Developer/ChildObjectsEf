@@ -13,7 +13,7 @@ internal class UpdateItemInOrderCommandHandler : IRequestHandler<UpdateItemInOrd
     }
 
     async Task<bool> IRequestHandler<UpdateItemInOrderCommand, bool>.Handle(
-        UpdateItemInOrderCommand request, 
+        UpdateItemInOrderCommand request,
         CancellationToken cancellationToken)
     {
         Order order = await _childObjectsEfRepo.GetOrderAsync(request.OrderId);

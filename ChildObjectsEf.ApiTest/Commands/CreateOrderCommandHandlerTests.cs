@@ -13,7 +13,7 @@ public class CreateOrderCommandHandlerTests
         CreateOrderCommand createOrderCommand = new(orderId, orderDateTime);
         CancellationToken cancellationToken = new();
 
-        IRequestHandler<CreateOrderCommand, int> requestHandler = 
+        IRequestHandler<CreateOrderCommand, int> requestHandler =
             new CreateOrderCommandHandler(childObjectsEfRepoMock.Object);
 
         childObjectsEfRepoMock
@@ -31,7 +31,7 @@ public class CreateOrderCommandHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Once);
-        
+
         Assert.Equal(205, newOrderId);
     }
 }

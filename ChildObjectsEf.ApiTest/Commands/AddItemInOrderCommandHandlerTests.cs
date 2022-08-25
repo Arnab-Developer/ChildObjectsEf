@@ -16,7 +16,7 @@ public class AddItemInOrderCommandHandlerTests
         AddItemInOrderCommand addItemInOrderCommand = new(orderId, itemId, itemName, itemQuantity);
         CancellationToken cancellationToken = new();
 
-        IRequestHandler<AddItemInOrderCommand, bool> requestHandler = 
+        IRequestHandler<AddItemInOrderCommand, bool> requestHandler =
             new AddItemInOrderCommandHandler(childObjectsEfRepoMock.Object);
 
         Order order = new(orderId, orderDateTime);
@@ -36,7 +36,7 @@ public class AddItemInOrderCommandHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Once);
-        
+
         Assert.True(isSuccess);
         Assert.Contains(itemName, order.Items.Select(i => i.GetCurrentName()));
     }

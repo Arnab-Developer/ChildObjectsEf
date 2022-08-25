@@ -3,17 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildObjectsEf.Api", "ChildObjectsEf.Api\ChildObjectsEf.Api.csproj", "{2DE91B50-AD8B-4097-B8B8-277704A7D313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Api", "ChildObjectsEf.Api\ChildObjectsEf.Api.csproj", "{2DE91B50-AD8B-4097-B8B8-277704A7D313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildObjectsEf.ApiTest", "ChildObjectsEf.ApiTest\ChildObjectsEf.ApiTest.csproj", "{C270F530-1E66-44C8-9C71-FA286E6974EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.ApiTest", "ChildObjectsEf.ApiTest\ChildObjectsEf.ApiTest.csproj", "{C270F530-1E66-44C8-9C71-FA286E6974EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildObjectsEf.Domain", "ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj", "{0B397CD2-1147-47CC-A87E-44766BEF8E72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Domain", "ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj", "{0B397CD2-1147-47CC-A87E-44766BEF8E72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildObjectsEf.Data", "ChildObjectsEf.Data\ChildObjectsEf.Data.csproj", "{A85F1475-27BD-410F-B461-A3200A4E168D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Data", "ChildObjectsEf.Data\ChildObjectsEf.Data.csproj", "{A85F1475-27BD-410F-B461-A3200A4E168D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B2C2C47B-E6AB-4B92-8127-801DB9E03994}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DBABB6AE-0B6B-4956-BB01-9C4E1D5396A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30FEB780-DD88-4849-B896-172BE70DB52A}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

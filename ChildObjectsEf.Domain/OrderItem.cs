@@ -23,5 +23,5 @@ public class OrderItem
 
     internal void ChangeName(string name) => _name = name;
 
-    internal void ChangeQuantity(int quantity) => _quantity = quantity;    
+    internal void ChangeQuantity(int quantity) => _quantity = quantity;
 }

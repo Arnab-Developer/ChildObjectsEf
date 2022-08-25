@@ -6,5 +6,5 @@ public interface IChildObjectsEfRepo
 
     public Task<int> CreateOrderAsync(Order order);
 
-    public Task SaveAllAsync();    
+    public Task SaveAllAsync();
 }
