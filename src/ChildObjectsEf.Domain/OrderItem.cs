@@ -10,11 +10,10 @@ public class OrderItem
 
     public Order Order { get; internal set; }
 
-    public OrderItem(int id, string name, int quantity)
+    public OrderItem(string name, int quantity)
     {
-        Id = id;
         Name = name;
         Quantity = quantity;
-        Order = new Order(default, default);
+        Order = new Order(default);
     }
 }

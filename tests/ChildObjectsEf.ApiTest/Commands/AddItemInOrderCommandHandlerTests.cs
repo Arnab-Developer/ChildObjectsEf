@@ -5,21 +5,21 @@ public class AddItemInOrderCommandHandlerTests
     [Fact]
     public async Task Can_AddItemInOrderCommandHandler_AddProperItemInOrder()
     {
-        // Arrange
-        DateTime orderDateTime = Randomizer<DateTime>.Create();
-        int orderId = Randomizer<int>.Create();
-        int itemId = Randomizer<int>.Create();
+        // Arrange        
         string itemName = Randomizer<string>.Create();
         int itemQuantity = Randomizer<int>.Create();
+        int orderId = Randomizer<int>.Create();
 
-        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
-        AddItemInOrderCommand addItemInOrderCommand = new(orderId, itemId, itemName, itemQuantity);
+        AddItemInOrderCommand addItemInOrderCommand = new(orderId, itemName, itemQuantity);
         CancellationToken cancellationToken = new();
+        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
 
         IRequestHandler<AddItemInOrderCommand, bool> requestHandler =
             new AddItemInOrderCommandHandler(childObjectsEfRepoMock.Object);
 
-        Order order = new(orderId, orderDateTime);
+        DateTime orderDateTime = Randomizer<DateTime>.Create();
+        Order order = new(orderDateTime);        
+        order.GetType().GetProperty("Id")!.SetValue(order, orderId);
 
         childObjectsEfRepoMock
             .Setup(s => s.GetOrderAsync(orderId))

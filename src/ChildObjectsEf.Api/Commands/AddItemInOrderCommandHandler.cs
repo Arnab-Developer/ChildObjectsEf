@@ -17,7 +17,7 @@ internal class AddItemInOrderCommandHandler : IRequestHandler<AddItemInOrderComm
         CancellationToken cancellationToken)
     {
         Order order = await _childObjectsEfRepo.GetOrderAsync(request.OrderId);
-        order.AddItem(request.OrderItemId, request.ItemName, request.ItemQuantity);
+        order.AddItem(request.ItemName, request.ItemQuantity);
         await _childObjectsEfRepo.SaveAllAsync();
         return true;
     }

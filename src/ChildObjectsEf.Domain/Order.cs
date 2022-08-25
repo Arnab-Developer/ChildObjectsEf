@@ -10,16 +10,15 @@ public class Order
 
     public IEnumerable<OrderItem> Items { get => _items.AsEnumerable(); }
 
-    public Order(int id, DateTime orderDate)
+    public Order(DateTime orderDate)
     {
-        Id = id;
         OrderDate = orderDate;
         _items = new List<OrderItem>();
     }
 
-    public void AddItem(int id, string name, int quantity)
+    public void AddItem(string name, int quantity)
     {
-        OrderItem orderItem = new(id, name, quantity);
+        OrderItem orderItem = new(name, quantity);
         _items.Add(orderItem);
     }
 
