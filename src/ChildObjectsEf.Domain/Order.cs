@@ -3,7 +3,6 @@
 public class Order
 {
     private readonly List<OrderItem> _items;
-    private DateTime _orderDate;
 
     public int Id { get; private set; }
 

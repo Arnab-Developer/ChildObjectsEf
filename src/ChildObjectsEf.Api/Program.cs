@@ -24,7 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/create-order", async (
-    IMediator mediator, 
+    IMediator mediator,
     string dateTime) =>
 {
     DateTime orderDateTime = DateTime.Parse(dateTime);
@@ -33,9 +33,9 @@ app.MapGet("/create-order", async (
 });
 
 app.MapGet("/add-item-in-order", async (
-    IMediator mediator, 
-    int orderId, 
-    string itemName, 
+    IMediator mediator,
+    int orderId,
+    string itemName,
     int itemQuantity) =>
 {
     AddItemInOrderCommand command = new(orderId, itemName, itemQuantity);

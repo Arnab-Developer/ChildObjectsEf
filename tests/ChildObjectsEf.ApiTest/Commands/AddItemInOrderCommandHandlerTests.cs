@@ -18,7 +18,7 @@ public class AddItemInOrderCommandHandlerTests
             new AddItemInOrderCommandHandler(childObjectsEfRepoMock.Object);
 
         DateTime orderDateTime = Randomizer<DateTime>.Create();
-        Order order = new(orderDateTime);        
+        Order order = new(orderDateTime);
         order.GetType().GetProperty("Id")!.SetValue(order, orderId);
 
         childObjectsEfRepoMock

@@ -17,11 +17,11 @@ internal class Func1Command : IRequest<bool>
     public int ItemIdToDelete { get; set; }
 
     public Func1Command(
-        int orderId, 
-        DateTime orderDate, 
-        int itemIdToUpdate, 
-        string itemName, 
-        int itemQuantity, 
+        int orderId,
+        DateTime orderDate,
+        int itemIdToUpdate,
+        string itemName,
+        int itemQuantity,
         int itemIdToDelete)
     {
         OrderId = orderId;
