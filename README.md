@@ -1,3 +1,5 @@
-# ChildObjectsEf
+# Child objects EF
 
-Child object manage with EF change tracking.
+- Manage child objects with Entity Framework change tracking.
+- Mediator pattern
+- Unit test
