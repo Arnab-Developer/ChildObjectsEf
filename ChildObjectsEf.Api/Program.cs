@@ -1,41 +1,32 @@
-var builder = WebApplication.CreateBuilder(args);
+using ChildObjectsEf.Api.Commands;
+using ChildObjectsEf.Data;
+using ChildObjectsEf.Domain;
+using MediatR;
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMediatR(typeof(Program));
+builder.Services.AddTransient<IChildObjectsEfRepo, ChildObjectsEfRepo>();
 
-var app = builder.Build();
+builder.Services.AddSqlServer<ChildObjectsEfContext>(
+    builder.Configuration.GetConnectionString("ChildObjectsEfConnection"),
+    x => x.MigrationsAssembly("ChildObjectsEf.Data"));
 
-// Configure the HTTP request pipeline.
+WebApplication app = builder.Build();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-var summaries = new[]
+app.MapGet("/create-order", async (IMediator mediator, DateTime orderDateTime) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateTime.Now.AddDays(index),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    CreateOrderCommand createOrderCommand = new(orderDateTime);
+    await mediator.Send(createOrderCommand);
 })
-.WithName("GetWeatherForecast");
+.WithName("CreateOrder");
 
 app.Run();
-
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
