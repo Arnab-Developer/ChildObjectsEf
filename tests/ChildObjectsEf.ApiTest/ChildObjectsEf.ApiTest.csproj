@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChildObjectsEf.Api\ChildObjectsEf.Api.csproj" />
+    <ProjectReference Include="..\..\src\ChildObjectsEf.Api\ChildObjectsEf.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>
