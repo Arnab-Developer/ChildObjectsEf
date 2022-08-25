@@ -28,6 +28,11 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+    <Using Include="MediatR" />
+    <Using Include="Moq" />
+    <Using Include="ChildObjectsEf.Domain" />
+    <Using Include="ChildObjectsEf.Api.Commands" />
+    <Using Include="Tynamix.ObjectFiller" />
   </ItemGroup>
 
 </Project>

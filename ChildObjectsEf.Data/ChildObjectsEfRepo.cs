@@ -1,4 +1,5 @@
 ﻿using ChildObjectsEf.Domain;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ChildObjectsEf.Data;
@@ -10,6 +11,15 @@ public class ChildObjectsEfRepo : IChildObjectsEfRepo
     public ChildObjectsEfRepo(ChildObjectsEfContext childObjectsEfContext)
     {
         _childObjectsEfContext = childObjectsEfContext;
+    }
+
+    async Task<Order> IChildObjectsEfRepo.GetOrderAsync(int orderId)
+    {
+        Order order = await _childObjectsEfContext.Orders
+            .Include(o => o.Items)
+            .FirstAsync(o => o.Id == orderId);
+
+        return order;
     }
 
     async Task<int> IChildObjectsEfRepo.CreateOrderAsync(Order order)

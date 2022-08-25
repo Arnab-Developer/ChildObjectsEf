@@ -2,6 +2,8 @@
 
 public interface IChildObjectsEfRepo
 {
+    Task<Order> GetOrderAsync(int orderId);
+
     public Task<int> CreateOrderAsync(Order order);
 
     public void AddItemInOrder(int orderId, string itemName, int itemQuantity);
@@ -14,5 +16,5 @@ public interface IChildObjectsEfRepo
 
     public void DeleteOrder(int orderId);
 
-    public Task SaveAllAsync();
+    public Task SaveAllAsync();    
 }

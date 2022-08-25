@@ -1,10 +1,4 @@
-﻿using ChildObjectsEf.Api.Commands;
-using ChildObjectsEf.Domain;
-using MediatR;
-using Moq;
-using Tynamix.ObjectFiller;
-
-namespace ChildObjectsEf.ApiTest.Commands;
+﻿namespace ChildObjectsEf.ApiTest.Commands;
 
 public class CreateOrderCommandHandlerTests
 {
@@ -17,7 +11,7 @@ public class CreateOrderCommandHandlerTests
         CreateOrderCommand createOrderCommand = new(orderDateTime);
         CancellationToken cancellationToken = new();
 
-        IRequestHandler<CreateOrderCommand, int> createOrderCommandHandler = 
+        IRequestHandler<CreateOrderCommand, int> requestHandler = 
             new CreateOrderCommandHandler(childObjectsEfRepoMock.Object);
 
         childObjectsEfRepoMock
@@ -25,7 +19,7 @@ public class CreateOrderCommandHandlerTests
             .ReturnsAsync(205);
 
         // Act
-        int newOrderId = await createOrderCommandHandler.Handle(createOrderCommand, cancellationToken);
+        int newOrderId = await requestHandler.Handle(createOrderCommand, cancellationToken);
 
         // Assert
         childObjectsEfRepoMock
