@@ -16,7 +16,7 @@ internal class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, i
         CreateOrderCommand request,
         CancellationToken cancellationToken)
     {
-        Order order = new(request.Id, request.OrderDateTime);
+        Order order = new(request.OrderDateTime);
         int newOrderId = await _childObjectsEfRepo.CreateOrderAsync(order);
         await _childObjectsEfRepo.SaveAllAsync();
         return newOrderId;

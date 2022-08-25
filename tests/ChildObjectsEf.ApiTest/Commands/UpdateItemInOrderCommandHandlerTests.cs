@@ -19,9 +19,17 @@ public class UpdateItemInOrderCommandHandlerTests
         IRequestHandler<UpdateItemInOrderCommand, bool> requestHandler =
             new UpdateItemInOrderCommandHandler(childObjectsEfRepoMock.Object);
 
-        Order order = new(orderId, orderDateTime);
-        order.AddItem(1, "item1", 10);
-        order.AddItem(2, "item2", 20);
+        Order order = new(orderDateTime);
+        order.AddItem("item1", 10);
+        order.AddItem("item2", 20);
+
+        order.GetType().GetProperty("Id")!.SetValue(order, orderId);
+
+        OrderItem item = order.Items.First(i => i.Name == "item1");
+        item.GetType().GetProperty("Id")!.SetValue(item, 1);
+
+        item = order.Items.First(i => i.Name == "item2");
+        item.GetType().GetProperty("Id")!.SetValue(item, 2);
 
         childObjectsEfRepoMock
             .Setup(s => s.GetOrderAsync(orderId))
