@@ -7,8 +7,8 @@ public class OrderItem
 
     public int Id { get; internal set; }
 
-    public string Name 
-    { 
+    public string Name
+    {
         get => _name;
         internal set
         {

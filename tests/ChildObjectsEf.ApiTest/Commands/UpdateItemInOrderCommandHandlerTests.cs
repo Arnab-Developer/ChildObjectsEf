@@ -1,6 +1,4 @@
-﻿using ChildObjectsEf.Api.Commands;
-
-namespace ChildObjectsEf.ApiTest.Commands;
+﻿namespace ChildObjectsEf.ApiTest.Commands;
 
 public class UpdateItemInOrderCommandHandlerTests
 {

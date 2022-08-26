@@ -1,6 +1,4 @@
-﻿using ChildObjectsEf.Api.Commands;
-
-namespace ChildObjectsEf.ApiTest.Commands;
+﻿namespace ChildObjectsEf.ApiTest.Commands;
 
 public class Func1CommandHandlerHandlerTests
 {
@@ -82,7 +80,7 @@ public class Func1CommandHandlerHandlerTests
         string itemName = null;
 #pragma warning restore CS8600
 
-        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();        
+        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
         Func1Command func1Command = new(orderId, orderDateTime, 2, itemName!, 18, 4);
         CancellationToken cancellationToken = new();
 
