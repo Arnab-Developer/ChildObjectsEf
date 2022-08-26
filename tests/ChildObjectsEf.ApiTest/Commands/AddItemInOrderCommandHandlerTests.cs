@@ -91,7 +91,7 @@ public class AddItemInOrderCommandHandlerTests
         int itemQuantity = 0;
         int orderId = Randomizer<int>.Create();
 
-        AddItemInOrderCommand addItemInOrderCommand = new(orderId, itemName!, itemQuantity);
+        AddItemInOrderCommand addItemInOrderCommand = new(orderId, itemName, itemQuantity);
         CancellationToken cancellationToken = new();
         Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
 
