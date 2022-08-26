@@ -121,4 +121,37 @@ public class AddItemInOrderCommandHandlerTests
 
         Assert.DoesNotContain(itemName, order.Items.Select(i => i.Name));
     }
+
+    [Fact]
+    public async Task Can_AddItemInOrderCommandHandler_ThrowException_WithInvalidOrderId()
+    {
+        // Arrange
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = 0;
+        int notExistOrderId = 2;
+
+        AddItemInOrderCommand addItemInOrderCommand = new(notExistOrderId, itemName, itemQuantity);
+        CancellationToken cancellationToken = new();
+        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
+
+        IRequestHandler<AddItemInOrderCommand, bool> requestHandler =
+            new AddItemInOrderCommandHandler(childObjectsEfRepoMock.Object);
+
+        childObjectsEfRepoMock
+            .Setup(s => s.GetOrderAsync(notExistOrderId))
+            .Throws<InvalidOperationException>();
+
+        // Act
+        await Assert.ThrowsAsync<InvalidOperationException>(
+            () => requestHandler.Handle(addItemInOrderCommand, cancellationToken));
+
+        // Assert
+        childObjectsEfRepoMock
+            .Verify(v => v.GetOrderAsync(notExistOrderId),
+                Times.Once);
+
+        childObjectsEfRepoMock
+            .Verify(v => v.SaveAllAsync(),
+                Times.Never);
+    }
 }
