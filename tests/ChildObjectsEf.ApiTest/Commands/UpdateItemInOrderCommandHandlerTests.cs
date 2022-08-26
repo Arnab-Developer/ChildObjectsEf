@@ -167,4 +167,39 @@ public class UpdateItemInOrderCommandHandlerTests
         Assert.Equal("updated item", order.Items.First(i => i.Id == 2).Name);
         Assert.Equal(20, order.Items.First(i => i.Id == 2).Quantity);
     }
+
+    [Fact]
+    public async Task Can_UpdateItemInOrderCommandHandler_ThrowException_WithInvalidOrderId()
+    {
+        // Arrange
+        DateTime orderDateTime = Randomizer<DateTime>.Create();
+        int invalidOrderId = 2;
+        int itemId = 2;
+        string itemName = "updated item";
+        int itemQuantity = 106;
+
+        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
+        UpdateItemInOrderCommand updateItemInOrderCommand = new(invalidOrderId, itemId, itemName, itemQuantity);
+        CancellationToken cancellationToken = new();
+
+        IRequestHandler<UpdateItemInOrderCommand, bool> requestHandler =
+            new UpdateItemInOrderCommandHandler(childObjectsEfRepoMock.Object);
+
+        childObjectsEfRepoMock
+            .Setup(s => s.GetOrderAsync(invalidOrderId))
+            .Throws<InvalidOperationException>();
+
+        // Act
+        await Assert.ThrowsAsync<InvalidOperationException>(
+            () => requestHandler.Handle(updateItemInOrderCommand, cancellationToken));
+
+        // Assert
+        childObjectsEfRepoMock
+            .Verify(v => v.GetOrderAsync(invalidOrderId),
+                Times.Once);
+
+        childObjectsEfRepoMock
+            .Verify(v => v.SaveAllAsync(),
+                Times.Never);
+    }
 }
