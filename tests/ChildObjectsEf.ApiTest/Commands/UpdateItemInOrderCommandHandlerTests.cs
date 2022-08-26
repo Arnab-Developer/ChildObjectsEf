@@ -202,4 +202,57 @@ public class UpdateItemInOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
     }
+
+    [Fact]
+    public async Task Can_UpdateItemInOrderCommandHandler_ThrowException_WithInvalidItemId()
+    {
+        // Arrange
+        DateTime orderDateTime = Randomizer<DateTime>.Create();
+        int orderId = Randomizer<int>.Create();
+        int invalidItemId = 3;
+        string itemName = "updated item";
+        int itemQuantity = 106;
+
+        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
+        UpdateItemInOrderCommand updateItemInOrderCommand = new(orderId, invalidItemId, itemName, itemQuantity);
+        CancellationToken cancellationToken = new();
+
+        IRequestHandler<UpdateItemInOrderCommand, bool> requestHandler =
+            new UpdateItemInOrderCommandHandler(childObjectsEfRepoMock.Object);
+
+        Order order = new(orderDateTime);
+        order.AddItem("item1", 10);
+        order.AddItem("item2", 20);
+
+        order.GetType().GetProperty("Id")!.SetValue(order, orderId);
+
+        OrderItem item = order.Items.First(i => i.Name == "item1");
+        item.GetType().GetProperty("Id")!.SetValue(item, 1);
+
+        item = order.Items.First(i => i.Name == "item2");
+        item.GetType().GetProperty("Id")!.SetValue(item, 2);
+
+        childObjectsEfRepoMock
+            .Setup(s => s.GetOrderAsync(orderId))
+            .ReturnsAsync(order);
+
+        // Act
+        await Assert.ThrowsAsync<InvalidOperationException>(
+            () => requestHandler.Handle(updateItemInOrderCommand, cancellationToken));
+
+        // Assert
+        childObjectsEfRepoMock
+            .Verify(v => v.GetOrderAsync(orderId),
+                Times.Once);
+
+        childObjectsEfRepoMock
+            .Verify(v => v.SaveAllAsync(),
+                Times.Never);
+
+        Assert.Equal("item1", order.Items.First(i => i.Id == 1).Name);
+        Assert.Equal(10, order.Items.First(i => i.Id == 1).Quantity);
+
+        Assert.Equal("item2", order.Items.First(i => i.Id == 2).Name);
+        Assert.Equal(20, order.Items.First(i => i.Id == 2).Quantity);
+    }
 }
