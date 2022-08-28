@@ -47,6 +47,8 @@ public class UpdateItemInOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Once);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.True(isSuccess);
 
         Assert.Equal("item1", order.Items.First(i => i.Id == 1).Name);
@@ -106,6 +108,8 @@ public class UpdateItemInOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.Equal("item1", order.Items.First(i => i.Id == 1).Name);
         Assert.Equal(10, order.Items.First(i => i.Id == 1).Quantity);
 
@@ -159,6 +163,8 @@ public class UpdateItemInOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.Equal("item1", order.Items.First(i => i.Id == 1).Name);
         Assert.Equal(10, order.Items.First(i => i.Id == 1).Quantity);
 
@@ -199,6 +205,8 @@ public class UpdateItemInOrderCommandHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
+
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -246,6 +254,8 @@ public class UpdateItemInOrderCommandHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
+
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
 
         Assert.Equal("item1", order.Items.First(i => i.Id == 1).Name);
         Assert.Equal(10, order.Items.First(i => i.Id == 1).Quantity);
