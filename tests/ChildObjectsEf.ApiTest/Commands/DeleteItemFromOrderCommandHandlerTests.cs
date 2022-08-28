@@ -44,6 +44,8 @@ public class DeleteItemFromOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Once);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.True(isSuccess);
         Assert.Single(order.Items);
 
@@ -82,6 +84,8 @@ public class DeleteItemFromOrderCommandHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
+
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -126,6 +130,8 @@ public class DeleteItemFromOrderCommandHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
+
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
 
         Assert.Equal(2, order.Items.Count());
 

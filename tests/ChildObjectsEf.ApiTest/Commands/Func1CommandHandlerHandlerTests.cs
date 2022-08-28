@@ -52,6 +52,8 @@ public class Func1CommandHandlerHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Once);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.True(isSuccess);
 
         Assert.Equal(orderId, order.Id);
@@ -124,6 +126,8 @@ public class Func1CommandHandlerHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.Equal(orderId, order.Id);
         Assert.Equal(orderDateTime, order.OrderDate);
 
@@ -191,6 +195,8 @@ public class Func1CommandHandlerHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.Equal(orderId, order.Id);
         Assert.Equal(orderDateTime, order.OrderDate);
 
@@ -237,6 +243,8 @@ public class Func1CommandHandlerHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
+
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
     }
 
     [Fact]
@@ -289,6 +297,8 @@ public class Func1CommandHandlerHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
+
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
 
         Assert.Equal(orderId, order.Id);
         Assert.Equal(orderDateTime, order.OrderDate);

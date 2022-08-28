@@ -37,6 +37,8 @@ public class AddItemInOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Once);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.True(isSuccess);
         Assert.Contains(itemName, order.Items.Select(i => i.Name));
     }
@@ -80,6 +82,8 @@ public class AddItemInOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.DoesNotContain(itemName, order.Items.Select(i => i.Name));
     }
 
@@ -119,6 +123,8 @@ public class AddItemInOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.DoesNotContain(itemName, order.Items.Select(i => i.Name));
     }
 
@@ -153,5 +159,7 @@ public class AddItemInOrderCommandHandlerTests
         childObjectsEfRepoMock
             .Verify(v => v.SaveAllAsync(),
                 Times.Never);
+
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
     }
 }

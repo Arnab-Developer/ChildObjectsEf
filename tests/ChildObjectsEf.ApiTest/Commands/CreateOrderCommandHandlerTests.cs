@@ -30,6 +30,8 @@ public class CreateOrderCommandHandlerTests
             .Verify(v => v.SaveAllAsync(),
                 Times.Once);
 
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
+
         Assert.Equal(205, newOrderId);
     }
 }
