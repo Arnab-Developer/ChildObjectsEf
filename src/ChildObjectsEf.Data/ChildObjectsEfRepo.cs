@@ -20,7 +20,7 @@ public class ChildObjectsEfRepo : IChildObjectsEfRepo
         return order;
     }
 
-    async Task<int> IChildObjectsEfRepo.CreateOrderAsync(Order order)
+    async ValueTask<int> IChildObjectsEfRepo.CreateOrderAsync(Order order)
     {
         EntityEntry<Order> entry = await _childObjectsEfContext.Orders.AddAsync(order);
         Order newOrder = entry.Entity;
