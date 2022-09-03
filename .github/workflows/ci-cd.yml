@@ -57,7 +57,7 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     name: GitHub package docker push
-    needs: [build-test, codeql-analysis]
+    needs: [build, codeql-analysis]
     permissions:
       packages: write
 
@@ -90,7 +90,7 @@ jobs:
     if: ${{ github.event_name == 'release' }}
     runs-on: ubuntu-latest
     name: Dockerhub push
-    needs: [build-test, codeql-analysis]    
+    needs: [build, codeql-analysis]    
     environment:
       name: Dockerhub
       url: https://hub.docker.com/r/45862391/childobjectsef
