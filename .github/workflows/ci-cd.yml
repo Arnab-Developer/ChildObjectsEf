@@ -57,7 +57,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
   github-package-docker-push:
-    #if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     name: GitHub package docker push
     needs: [build, codeql-analysis]
@@ -90,7 +90,7 @@ jobs:
       run: docker push ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.0
 
   dockerhub-push:
-    #if: ${{ github.event_name == 'release' }}
+    if: ${{ github.event_name == 'release' }}
     runs-on: ubuntu-latest
     name: Dockerhub push
     needs: [build, codeql-analysis]    
