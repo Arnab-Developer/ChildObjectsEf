@@ -11,10 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Domain", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Data", "src\ChildObjectsEf.Data\ChildObjectsEf.Data.csproj", "{A85F1475-27BD-410F-B461-A3200A4E168D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B2C2C47B-E6AB-4B92-8127-801DB9E03994}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DBABB6AE-0B6B-4956-BB01-9C4E1D5396A6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30FEB780-DD88-4849-B896-172BE70DB52A}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
@@ -51,12 +47,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{2DE91B50-AD8B-4097-B8B8-277704A7D313} = {B2C2C47B-E6AB-4B92-8127-801DB9E03994}
-		{C270F530-1E66-44C8-9C71-FA286E6974EA} = {DBABB6AE-0B6B-4956-BB01-9C4E1D5396A6}
-		{0B397CD2-1147-47CC-A87E-44766BEF8E72} = {B2C2C47B-E6AB-4B92-8127-801DB9E03994}
-		{A85F1475-27BD-410F-B461-A3200A4E168D} = {B2C2C47B-E6AB-4B92-8127-801DB9E03994}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49FEC29A-E6DA-44C8-A572-E398F0AC05E5}
