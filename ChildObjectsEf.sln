@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Api", "ChildObjectsEf.Api\ChildObjectsEf.Api.csproj", "{2DE91B50-AD8B-4097-B8B8-277704A7D313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Api", "src\ChildObjectsEf.Api\ChildObjectsEf.Api.csproj", "{2DE91B50-AD8B-4097-B8B8-277704A7D313}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.ApplicationTest", "ChildObjectsEf.ApplicationTest\ChildObjectsEf.ApplicationTest.csproj", "{C270F530-1E66-44C8-9C71-FA286E6974EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.ApplicationTest", "tests\ChildObjectsEf.ApplicationTest\ChildObjectsEf.ApplicationTest.csproj", "{C270F530-1E66-44C8-9C71-FA286E6974EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Domain", "ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj", "{0B397CD2-1147-47CC-A87E-44766BEF8E72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Domain", "src\ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj", "{0B397CD2-1147-47CC-A87E-44766BEF8E72}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Data", "ChildObjectsEf.Data\ChildObjectsEf.Data.csproj", "{A85F1475-27BD-410F-B461-A3200A4E168D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Data", "src\ChildObjectsEf.Data\ChildObjectsEf.Data.csproj", "{A85F1475-27BD-410F-B461-A3200A4E168D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30FEB780-DD88-4849-B896-172BE70DB52A}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,9 +22,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Application", "ChildObjectsEf.Application\ChildObjectsEf.Application.csproj", "{CE743053-E259-4F5D-9D29-BC250D245AED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Application", "src\ChildObjectsEf.Application\ChildObjectsEf.Application.csproj", "{CE743053-E259-4F5D-9D29-BC250D245AED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildObjectsEf.DomainTest", "ChildObjectsEf.DomainTest\ChildObjectsEf.DomainTest.csproj", "{D9684636-3F84-443C-BC4E-404562D4F509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.DomainTest", "tests\ChildObjectsEf.DomainTest\ChildObjectsEf.DomainTest.csproj", "{D9684636-3F84-443C-BC4E-404562D4F509}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C9874D1B-00E2-4DB7-B148-AA4617229327}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FF76A6A0-7353-4056-84EF-15B37D42DE58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2DE91B50-AD8B-4097-B8B8-277704A7D313} = {C9874D1B-00E2-4DB7-B148-AA4617229327}
+		{C270F530-1E66-44C8-9C71-FA286E6974EA} = {FF76A6A0-7353-4056-84EF-15B37D42DE58}
+		{0B397CD2-1147-47CC-A87E-44766BEF8E72} = {C9874D1B-00E2-4DB7-B148-AA4617229327}
+		{A85F1475-27BD-410F-B461-A3200A4E168D} = {C9874D1B-00E2-4DB7-B148-AA4617229327}
+		{CE743053-E259-4F5D-9D29-BC250D245AED} = {C9874D1B-00E2-4DB7-B148-AA4617229327}
+		{D9684636-3F84-443C-BC4E-404562D4F509} = {FF76A6A0-7353-4056-84EF-15B37D42DE58}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49FEC29A-E6DA-44C8-A572-E398F0AC05E5}
