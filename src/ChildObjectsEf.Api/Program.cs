@@ -1,4 +1,5 @@
 using ChildObjectsEf.Application.Commands;
+using ChildObjectsEf.Application.Queries;
 using ChildObjectsEf.Data;
 using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
 using MediatR;
@@ -11,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(typeof(CreateOrderCommand));
 builder.Services.AddTransient<IChildObjectsEfRepo, ChildObjectsEfRepo>();
 builder.Services.AddSqlServer<ChildObjectsEfContext>(builder.Configuration.GetConnectionString("ChildObjectsEfConnection"));
+builder.Services.AddTransient<IGetOrderQuery, GetOrderQuery>();
 builder.Services.AddTransient<DTOs::IOrderQuery>(options =>
 {
     string constr = builder.Configuration.GetConnectionString("ChildObjectsEfConnection");
@@ -26,9 +28,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/get-order", async (DTOs::IOrderQuery orderQuery, int orderId) =>
+app.MapGet("/get-order", async (IGetOrderQuery getOrderQuery, int orderId) =>
 {
-    DTOs::Order order = await orderQuery.GetOrderAsync(orderId);
+    DTOs::Order order = await getOrderQuery.GetOrderAsync(orderId);
     return order;
 });
 

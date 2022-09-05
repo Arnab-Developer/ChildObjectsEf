@@ -1,6 +1,6 @@
 ﻿namespace ChildObjectsEf.Application.Queries;
 
-public class GetOrderQuery
+public class GetOrderQuery : IGetOrderQuery
 {
     private readonly DTOs::IOrderQuery _orderQuery;
 
@@ -9,7 +9,7 @@ public class GetOrderQuery
         _orderQuery = orderQuery;
     }
 
-    async Task<DTOs::Order> GetOrderAsync(int orderId)
+    async Task<DTOs::Order> IGetOrderQuery.GetOrderAsync(int orderId)
     {
         DTOs::Order order = await _orderQuery.GetOrderAsync(orderId);
         return order;
