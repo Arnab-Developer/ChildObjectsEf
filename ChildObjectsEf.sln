@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Api", "ChildObjectsEf.Api\ChildObjectsEf.Api.csproj", "{2DE91B50-AD8B-4097-B8B8-277704A7D313}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.ApplicationTest", "ChildObjectsEf.ApiTest\ChildObjectsEf.ApplicationTest.csproj", "{C270F530-1E66-44C8-9C71-FA286E6974EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.ApplicationTest", "ChildObjectsEf.ApplicationTest\ChildObjectsEf.ApplicationTest.csproj", "{C270F530-1E66-44C8-9C71-FA286E6974EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Domain", "ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj", "{0B397CD2-1147-47CC-A87E-44766BEF8E72}"
 EndProject
