@@ -1,6 +1,9 @@
-﻿namespace ChildObjectsEf.Data;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+using ChildObjectsEf.Domain.SeedData;
 
-public class ChildObjectsEfContext : DbContext
+namespace ChildObjectsEf.Data;
+
+public class ChildObjectsEfContext : DbContext, IUnitOfWork
 {
     public DbSet<Order> Orders { get; set; }
 
@@ -11,5 +14,10 @@ public class ChildObjectsEfContext : DbContext
     {
         Orders = Set<Order>();
         OrderItems = Set<OrderItem>();
+    }
+
+    async Task IUnitOfWork.SaveChangesAsync()
+    {
+        await SaveChangesAsync();
     }
 }

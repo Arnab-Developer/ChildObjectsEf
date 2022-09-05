@@ -1,4 +1,7 @@
-﻿namespace ChildObjectsEf.ApiTest.Handlers;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+using ChildObjectsEf.Domain.SeedData;
+
+namespace ChildObjectsEf.ApiTest.Handlers;
 
 public class CreateOrderCommandHandlerTests
 {
@@ -18,6 +21,10 @@ public class CreateOrderCommandHandlerTests
             .Setup(s => s.CreateOrderAsync(It.Is<Order>(o => o.OrderDate == orderDateTime)))
             .ReturnsAsync(205);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         int newOrderId = await requestHandler.Handle(createOrderCommand, cancellationToken);
 
@@ -27,7 +34,7 @@ public class CreateOrderCommandHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Once);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();

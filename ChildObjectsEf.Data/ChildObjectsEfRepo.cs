@@ -1,10 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+using ChildObjectsEf.Domain.SeedData;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ChildObjectsEf.Data;
 
 public class ChildObjectsEfRepo : IChildObjectsEfRepo
 {
     private readonly ChildObjectsEfContext _childObjectsEfContext;
+
+    IUnitOfWork IRepository<Order>.UnitOfWork
+    {
+        get => _childObjectsEfContext;
+    }
 
     public ChildObjectsEfRepo(ChildObjectsEfContext childObjectsEfContext)
     {
@@ -25,10 +32,5 @@ public class ChildObjectsEfRepo : IChildObjectsEfRepo
         EntityEntry<Order> entry = await _childObjectsEfContext.Orders.AddAsync(order);
         Order newOrder = entry.Entity;
         return newOrder.Id;
-    }
-
-    async Task IChildObjectsEfRepo.SaveAllAsync()
-    {
-        await _childObjectsEfContext.SaveChangesAsync();
     }
 }

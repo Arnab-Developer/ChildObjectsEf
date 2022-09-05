@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Domain;
+﻿namespace ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
 
-public class Order
+public class Order : Entity, IAggregateRoot
 {
     private readonly List<OrderItem> _items;
 

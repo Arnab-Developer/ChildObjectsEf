@@ -1,4 +1,7 @@
-﻿namespace ChildObjectsEf.ApiTest.Handlers;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+using ChildObjectsEf.Domain.SeedData;
+
+namespace ChildObjectsEf.ApiTest.Handlers;
 
 public class AddItemInOrderCommandHandlerTests
 {
@@ -25,6 +28,10 @@ public class AddItemInOrderCommandHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         bool isSuccess = await requestHandler.Handle(addItemInOrderCommand, cancellationToken);
 
@@ -34,7 +41,7 @@ public class AddItemInOrderCommandHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Once);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();
@@ -69,6 +76,10 @@ public class AddItemInOrderCommandHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         await Assert.ThrowsAsync<ArgumentNullException>(
             () => requestHandler.Handle(addItemInOrderCommand, cancellationToken));
@@ -79,7 +90,7 @@ public class AddItemInOrderCommandHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Never);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();
@@ -110,6 +121,10 @@ public class AddItemInOrderCommandHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         await Assert.ThrowsAsync<ArgumentOutOfRangeException>(
             () => requestHandler.Handle(addItemInOrderCommand, cancellationToken));
@@ -120,7 +135,7 @@ public class AddItemInOrderCommandHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Never);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();
@@ -147,6 +162,10 @@ public class AddItemInOrderCommandHandlerTests
             .Setup(s => s.GetOrderAsync(notExistOrderId))
             .Throws<InvalidOperationException>();
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         await Assert.ThrowsAsync<InvalidOperationException>(
             () => requestHandler.Handle(addItemInOrderCommand, cancellationToken));
@@ -157,7 +176,7 @@ public class AddItemInOrderCommandHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Never);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();

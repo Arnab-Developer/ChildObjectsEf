@@ -1,4 +1,6 @@
-﻿namespace ChildObjectsEf.Application.Handlers;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+
+namespace ChildObjectsEf.Application.Handlers;
 
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int>
 {
@@ -15,7 +17,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int
     {
         Order order = new(request.OrderDateTime);
         int newOrderId = await _childObjectsEfRepo.CreateOrderAsync(order);
-        await _childObjectsEfRepo.SaveAllAsync();
+        await _childObjectsEfRepo.UnitOfWork.SaveChangesAsync();
         return newOrderId;
     }
 }

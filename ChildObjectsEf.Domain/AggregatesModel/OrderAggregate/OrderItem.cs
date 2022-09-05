@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Domain;
+﻿namespace ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
 
-public class OrderItem
+public class OrderItem : Entity
 {
     private string _name;
     private int _quantity;

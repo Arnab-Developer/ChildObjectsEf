@@ -1,4 +1,6 @@
-﻿namespace ChildObjectsEf.Application.Handlers;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+
+namespace ChildObjectsEf.Application.Handlers;
 
 public class UpdateItemInOrderCommandHandler : IRequestHandler<UpdateItemInOrderCommand, bool>
 {
@@ -16,7 +18,7 @@ public class UpdateItemInOrderCommandHandler : IRequestHandler<UpdateItemInOrder
         Order order = await _childObjectsEfRepo.GetOrderAsync(request.OrderId);
         order.UpdateItemName(request.ItemId, request.ItemName);
         order.UpdateItemQuantity(request.ItemId, request.ItemQuantity);
-        await _childObjectsEfRepo.SaveAllAsync();
+        await _childObjectsEfRepo.UnitOfWork.SaveChangesAsync();
         return true;
     }
 }

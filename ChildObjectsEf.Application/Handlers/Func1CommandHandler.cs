@@ -1,4 +1,6 @@
-﻿namespace ChildObjectsEf.Application.Handlers;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+
+namespace ChildObjectsEf.Application.Handlers;
 
 public class Func1CommandHandler : IRequestHandler<Func1Command, bool>
 {
@@ -21,7 +23,7 @@ public class Func1CommandHandler : IRequestHandler<Func1Command, bool>
 
         order.RemoveItem(request.ItemIdToDelete);
 
-        await _childObjectsEfRepo.SaveAllAsync();
+        await _childObjectsEfRepo.UnitOfWork.SaveChangesAsync();
         return true;
     }
 }

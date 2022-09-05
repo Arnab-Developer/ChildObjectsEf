@@ -1,4 +1,6 @@
-﻿namespace ChildObjectsEf.Application.Handlers;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+
+namespace ChildObjectsEf.Application.Handlers;
 
 public class AddItemInOrderCommandHandler : IRequestHandler<AddItemInOrderCommand, bool>
 {
@@ -15,7 +17,7 @@ public class AddItemInOrderCommandHandler : IRequestHandler<AddItemInOrderComman
     {
         Order order = await _childObjectsEfRepo.GetOrderAsync(request.OrderId);
         order.AddItem(request.ItemName, request.ItemQuantity);
-        await _childObjectsEfRepo.SaveAllAsync();
+        await _childObjectsEfRepo.UnitOfWork.SaveChangesAsync();
         return true;
     }
 }
