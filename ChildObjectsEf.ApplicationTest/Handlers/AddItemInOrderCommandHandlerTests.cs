@@ -1,4 +1,4 @@
-﻿namespace ChildObjectsEf.ApiTest.Commands;
+﻿namespace ChildObjectsEf.ApiTest.Handlers;
 
 public class AddItemInOrderCommandHandlerTests
 {

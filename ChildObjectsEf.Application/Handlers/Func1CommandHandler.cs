@@ -1,4 +1,4 @@
-﻿namespace ChildObjectsEf.Application.Commands;
+﻿namespace ChildObjectsEf.Application.Handlers;
 
 public class Func1CommandHandler : IRequestHandler<Func1Command, bool>
 {

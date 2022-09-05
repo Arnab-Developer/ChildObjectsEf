@@ -17,6 +17,7 @@
   <ItemGroup>
     <Using Include="MediatR" />
     <Using Include="ChildObjectsEf.Domain" />
+    <Using Include="ChildObjectsEf.Application.Commands" />    
   </ItemGroup>
   
 </Project>
