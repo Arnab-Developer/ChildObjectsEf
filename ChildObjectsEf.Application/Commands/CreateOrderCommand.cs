@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Application.Commands;
 
-internal class CreateOrderCommand : IRequest<int>
+public class CreateOrderCommand : IRequest<int>
 {
     public DateTime OrderDateTime { get; set; }
 

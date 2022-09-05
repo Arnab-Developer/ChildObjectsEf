@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Application.Commands;
 
-internal class Func1Command : IRequest<bool>
+public class Func1Command : IRequest<bool>
 {
     public int OrderId { get; set; }
 
