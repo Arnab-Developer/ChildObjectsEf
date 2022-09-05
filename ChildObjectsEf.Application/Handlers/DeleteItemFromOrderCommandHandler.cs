@@ -1,6 +1,4 @@
-﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
-
-namespace ChildObjectsEf.Application.Handlers;
+﻿namespace ChildObjectsEf.Application.Handlers;
 
 public class DeleteItemFromOrderCommandHandler : IRequestHandler<DeleteItemFromOrderCommand, bool>
 {
