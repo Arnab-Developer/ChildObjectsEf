@@ -1,6 +1,4 @@
-﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
-using ChildObjectsEf.Domain.SeedData;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ChildObjectsEf.Data;
 

@@ -1,7 +1,4 @@
-﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
-using ChildObjectsEf.Domain.SeedData;
-
-namespace ChildObjectsEf.Data;
+﻿namespace ChildObjectsEf.Data;
 
 public class ChildObjectsEfContext : DbContext, IUnitOfWork
 {
