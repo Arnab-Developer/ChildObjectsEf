@@ -1,4 +1,6 @@
-﻿namespace ChildObjectsEf.DomainTest.AggregatesModel.OrderAggregate;
+﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+
+namespace ChildObjectsEf.DomainTest.AggregatesModel.OrderAggregate;
 
 public class OrderAggregateTests
 {
