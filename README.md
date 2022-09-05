@@ -1,5 +1,3 @@
 # Child objects EF
 
-- Manage child objects with Entity Framework change tracking.
-- Mediator pattern
-- Unit test
+This is an app to show how we can manage child objects with Entity Framework change tracking.
