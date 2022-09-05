@@ -13,12 +13,5 @@
   <ItemGroup>
     <ProjectReference Include="..\ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Using Include="MediatR" />
-    <Using Include="ChildObjectsEf.Domain" />
-    <Using Include="ChildObjectsEf.Application.Commands" />
-    <Using Include="ChildObjectsEf.Domain.AggregatesModel.OrderAggregate" />
-  </ItemGroup>
   
 </Project>
