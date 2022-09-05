@@ -26,34 +26,26 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/get-order", async (
-    DTOs::IOrderQuery orderQuery,
-    int orderId) =>
+app.MapGet("/get-order", async (DTOs::IOrderQuery orderQuery, int orderId) =>
 {
     DTOs::Order order = await orderQuery.GetOrderAsync(orderId);
     return order;
 });
 
-app.MapGet("/create-order", async (
-    IMediator mediator,
-    string dateTime) =>
+app.MapPost("/create-order", async (IMediator mediator, string dateTime) =>
 {
     DateTime orderDateTime = DateTime.Parse(dateTime);
     CreateOrderCommand command = new(orderDateTime);
     await mediator.Send(command);
 });
 
-app.MapGet("/add-item-in-order", async (
-    IMediator mediator,
-    int orderId,
-    string itemName,
-    int itemQuantity) =>
+app.MapPost("/add-item-in-order", async (IMediator mediator, int orderId, string itemName, int itemQuantity) =>
 {
     AddItemInOrderCommand command = new(orderId, itemName, itemQuantity);
     await mediator.Send(command);
 });
 
-app.MapGet("/update-item-in-order", async (
+app.MapPut("/update-item-in-order", async (
     IMediator mediator,
     int orderId,
     int itemId,
@@ -64,16 +56,13 @@ app.MapGet("/update-item-in-order", async (
     await mediator.Send(command);
 });
 
-app.MapGet("/delete-item-in-order", async (
-    IMediator mediator,
-    int orderId,
-    int itemId) =>
+app.MapDelete("/delete-item-in-order", async (IMediator mediator, int orderId, int itemId) =>
 {
     DeleteItemFromOrderCommand command = new(orderId, itemId);
     await mediator.Send(command);
 });
 
-app.MapGet("/func1", async (
+app.MapPut("/func1", async (
     IMediator mediator,
     int orderId,
     string dateTime,
