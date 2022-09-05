@@ -99,6 +99,10 @@ public class UpdateItemInOrderCommandHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         await Assert.ThrowsAsync<ArgumentNullException>(
             () => requestHandler.Handle(updateItemInOrderCommand, cancellationToken));
@@ -153,6 +157,10 @@ public class UpdateItemInOrderCommandHandlerTests
         childObjectsEfRepoMock
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
+
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
 
         // Act
         await Assert.ThrowsAsync<ArgumentOutOfRangeException>(
