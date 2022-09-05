@@ -22,7 +22,13 @@ public class OrderQuery : DTOs::IOrderQuery
             await con.OpenAsync();
         }
 
-        DTOs::Order order = await con.QueryFirstAsync<DTOs::Order>("select * from Orders where Id = @id", orderId);
+        const string query =
+            @"select o.Id, o.OrderDate, oi.Id, oi.Name, oi.Quantity 
+            from Orders o
+            inner join OrderItems oi on oi.OrderId = o.Id
+            where o.Id = @Id";
+
+        DTOs::Order order = await con.QueryFirstAsync<DTOs::Order>(query, new { Id = orderId });
         return order;
     }
 }
