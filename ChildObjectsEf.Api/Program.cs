@@ -1,9 +1,5 @@
 using ChildObjectsEf.Application.Commands;
 using ChildObjectsEf.Data;
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("ChildObjectsEf.ApiTest")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
