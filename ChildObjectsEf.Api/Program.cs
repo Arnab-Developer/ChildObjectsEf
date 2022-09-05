@@ -1,12 +1,8 @@
-using ChildObjectsEf.Application.Commands;
-using ChildObjectsEf.Data;
-using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMediatR(typeof(Program));
+builder.Services.AddMediatR(typeof(CreateOrderCommand));
 builder.Services.AddTransient<IChildObjectsEfRepo, ChildObjectsEfRepo>();
 builder.Services.AddSqlServer<ChildObjectsEfContext>(builder.Configuration.GetConnectionString("ChildObjectsEfConnection"));
 

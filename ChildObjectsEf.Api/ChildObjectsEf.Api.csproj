@@ -16,9 +16,4 @@
     <ProjectReference Include="..\ChildObjectsEf.Data\ChildObjectsEf.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Using Include="MediatR" />
-    <Using Include="ChildObjectsEf.Domain" />    
-  </ItemGroup>
-
 </Project>

@@ -18,9 +18,4 @@
     <ProjectReference Include="..\ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Using Include="Microsoft.EntityFrameworkCore" />
-    <Using Include="ChildObjectsEf.Domain" />
-  </ItemGroup>
-
 </Project>

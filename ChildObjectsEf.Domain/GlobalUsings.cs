@@ -1,0 +1,1 @@
+﻿global using ChildObjectsEf.Domain.SeedData;
