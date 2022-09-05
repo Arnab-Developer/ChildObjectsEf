@@ -33,6 +33,8 @@
     <Using Include="ChildObjectsEf.Domain" />
     <Using Include="ChildObjectsEf.Application.Commands" />
     <Using Include="ChildObjectsEf.Application.Handlers" />
+    <Using Include="ChildObjectsEf.Domain.AggregatesModel.OrderAggregate" />
+    <Using Include="ChildObjectsEf.Domain.SeedData" />
     <Using Include="Tynamix.ObjectFiller" />
   </ItemGroup>
 

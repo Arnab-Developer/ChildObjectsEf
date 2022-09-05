@@ -1,7 +1,4 @@
-﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
-using ChildObjectsEf.Domain.SeedData;
-
-namespace ChildObjectsEf.ApplicationTest.Handlers;
+﻿namespace ChildObjectsEf.ApplicationTest.Handlers;
 
 public class UpdateItemInOrderCommandHandlerTests
 {
