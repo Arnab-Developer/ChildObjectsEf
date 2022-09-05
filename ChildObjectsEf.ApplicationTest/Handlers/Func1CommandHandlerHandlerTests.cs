@@ -1,7 +1,7 @@
 ﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
 using ChildObjectsEf.Domain.SeedData;
 
-namespace ChildObjectsEf.ApiTest.Handlers;
+namespace ChildObjectsEf.ApplicationTest.Handlers;
 
 public class Func1CommandHandlerHandlerTests
 {
