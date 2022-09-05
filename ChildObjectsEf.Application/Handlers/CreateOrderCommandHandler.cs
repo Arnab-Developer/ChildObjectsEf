@@ -15,7 +15,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int
     {
         Order order = new(request.OrderDateTime);
         int newOrderId = await _childObjectsEfRepo.CreateOrderAsync(order);
-        await _childObjectsEfRepo.SaveAllAsync();
+        await _childObjectsEfRepo.UnitOfWork.SaveChangesAsync();
         return newOrderId;
     }
 }

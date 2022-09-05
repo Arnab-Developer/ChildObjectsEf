@@ -15,7 +15,7 @@ public class AddItemInOrderCommandHandler : IRequestHandler<AddItemInOrderComman
     {
         Order order = await _childObjectsEfRepo.GetOrderAsync(request.OrderId);
         order.AddItem(request.ItemName, request.ItemQuantity);
-        await _childObjectsEfRepo.SaveAllAsync();
+        await _childObjectsEfRepo.UnitOfWork.SaveChangesAsync();
         return true;
     }
 }

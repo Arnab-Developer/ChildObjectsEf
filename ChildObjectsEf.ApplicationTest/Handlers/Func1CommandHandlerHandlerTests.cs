@@ -1,4 +1,4 @@
-﻿namespace ChildObjectsEf.ApiTest.Handlers;
+﻿namespace ChildObjectsEf.ApplicationTest.Handlers;
 
 public class Func1CommandHandlerHandlerTests
 {
@@ -40,6 +40,10 @@ public class Func1CommandHandlerHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         bool isSuccess = await requestHandler.Handle(func1Command, cancellationToken);
 
@@ -49,7 +53,7 @@ public class Func1CommandHandlerHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Once);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();
@@ -113,6 +117,10 @@ public class Func1CommandHandlerHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         await Assert.ThrowsAsync<ArgumentNullException>(
             () => requestHandler.Handle(func1Command, cancellationToken));
@@ -123,7 +131,7 @@ public class Func1CommandHandlerHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Never);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();
@@ -182,6 +190,10 @@ public class Func1CommandHandlerHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         await Assert.ThrowsAsync<ArgumentOutOfRangeException>(
             () => requestHandler.Handle(func1Command, cancellationToken));
@@ -192,7 +204,7 @@ public class Func1CommandHandlerHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Never);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();
@@ -231,6 +243,10 @@ public class Func1CommandHandlerHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .Throws<InvalidOperationException>();
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         await Assert.ThrowsAsync<InvalidOperationException>(
             () => requestHandler.Handle(func1Command, cancellationToken));
@@ -241,7 +257,7 @@ public class Func1CommandHandlerHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Never);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();
@@ -285,6 +301,10 @@ public class Func1CommandHandlerHandlerTests
             .Setup(s => s.GetOrderAsync(orderId))
             .ReturnsAsync(order);
 
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
         // Act
         await Assert.ThrowsAsync<InvalidOperationException>(
             () => requestHandler.Handle(func1Command, cancellationToken));
@@ -295,7 +315,7 @@ public class Func1CommandHandlerHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.SaveAllAsync(),
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
                 Times.Never);
 
         childObjectsEfRepoMock.VerifyNoOtherCalls();

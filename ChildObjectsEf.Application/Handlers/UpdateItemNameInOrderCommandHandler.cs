@@ -16,7 +16,7 @@ public class UpdateItemInOrderCommandHandler : IRequestHandler<UpdateItemInOrder
         Order order = await _childObjectsEfRepo.GetOrderAsync(request.OrderId);
         order.UpdateItemName(request.ItemId, request.ItemName);
         order.UpdateItemQuantity(request.ItemId, request.ItemQuantity);
-        await _childObjectsEfRepo.SaveAllAsync();
+        await _childObjectsEfRepo.UnitOfWork.SaveChangesAsync();
         return true;
     }
 }

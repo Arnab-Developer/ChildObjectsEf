@@ -15,7 +15,7 @@ public class DeleteItemFromOrderCommandHandler : IRequestHandler<DeleteItemFromO
     {
         Order order = await _childObjectsEfRepo.GetOrderAsync(request.OrderId);
         order.RemoveItem(request.ItemId);
-        await _childObjectsEfRepo.SaveAllAsync();
+        await _childObjectsEfRepo.UnitOfWork.SaveChangesAsync();
         return true;
     }
 }
