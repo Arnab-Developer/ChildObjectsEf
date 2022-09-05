@@ -1,6 +1,4 @@
-﻿using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
-
-namespace ChildObjectsEf.DomainTest.AggregatesModel.OrderAggregate;
+﻿namespace ChildObjectsEf.DomainTest.AggregatesModel.OrderAggregate;
 
 public class OrderAggregateTests
 {
@@ -74,9 +72,47 @@ public class OrderAggregateTests
 
         OrderItem item = order.Items.First(i => i.Name == itemName);
         item.GetType().GetProperty("Id")!.SetValue(item, itemId);
-        
+
         order.UpdateItemName(itemId, "updated name");
 
         Assert.Equal("updated name", order.Items.ElementAt(0).Name);
+    }
+
+    [Fact]
+    public void Can_OrderAggregate_UpdateItemQuantity()
+    {
+        DateTime orderDate = Randomizer<DateTime>.Create();
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = Randomizer<int>.Create();
+        int itemId = Randomizer<int>.Create();
+
+        Order order = new(orderDate);
+        order.AddItem(itemName, itemQuantity);
+
+        OrderItem item = order.Items.First(i => i.Name == itemName);
+        item.GetType().GetProperty("Id")!.SetValue(item, itemId);
+
+        order.UpdateItemQuantity(itemId, 105);
+
+        Assert.Equal(105, order.Items.ElementAt(0).Quantity);
+    }
+
+    [Fact]
+    public void Can_OrderAggregate_RemoveItemFromOrder()
+    {
+        DateTime orderDate = Randomizer<DateTime>.Create();
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = Randomizer<int>.Create();
+        int itemId = Randomizer<int>.Create();
+
+        Order order = new(orderDate);
+        order.AddItem(itemName, itemQuantity);
+
+        OrderItem item = order.Items.First(i => i.Name == itemName);
+        item.GetType().GetProperty("Id")!.SetValue(item, itemId);
+
+        order.RemoveItem(itemId);
+
+        Assert.Empty(order.Items);
     }
 }
