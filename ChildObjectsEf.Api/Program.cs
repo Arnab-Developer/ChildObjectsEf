@@ -1,5 +1,3 @@
-using ChildObjectsEf.Data;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
