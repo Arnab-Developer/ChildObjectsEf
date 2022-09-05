@@ -1,3 +1,9 @@
+using ChildObjectsEf.Application.Commands;
+using ChildObjectsEf.Data;
+using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
+using MediatR;
+using DTOs = ChildObjectsEf.Domain.DTOs;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -5,6 +11,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(typeof(CreateOrderCommand));
 builder.Services.AddTransient<IChildObjectsEfRepo, ChildObjectsEfRepo>();
 builder.Services.AddSqlServer<ChildObjectsEfContext>(builder.Configuration.GetConnectionString("ChildObjectsEfConnection"));
+builder.Services.AddTransient<DTOs::IOrderQuery>(options =>
+{
+    string constr = builder.Configuration.GetConnectionString("ChildObjectsEfConnection");
+    OrderQuery orderQuery = new(constr);
+    return orderQuery;
+});
 
 WebApplication app = builder.Build();
 
@@ -13,6 +25,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapGet("/get-order", async (
+    DTOs::IOrderQuery orderQuery,
+    int orderId) =>
+{
+    DTOs::Order order = await orderQuery.GetOrderAsync(orderId);
+    return order;
+});
 
 app.MapGet("/create-order", async (
     IMediator mediator,
