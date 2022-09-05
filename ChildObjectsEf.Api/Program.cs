@@ -1,6 +1,4 @@
-using ChildObjectsEf.Application.Commands;
 using ChildObjectsEf.Data;
-using ChildObjectsEf.Domain.AggregatesModel.OrderAggregate;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
