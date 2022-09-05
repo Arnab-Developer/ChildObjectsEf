@@ -33,10 +33,10 @@ jobs:
       run: dotnet test --no-build -c ${{ env.CONFIGURATION }}
 
     - name: Publish
-      run: dotnet publish ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o ChildObjectsEf.Api/bin/publish
+      run: dotnet publish src/ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o src/ChildObjectsEf.Api/bin/publish
 
     - name: Create docker image
-      run: docker build -f ChildObjectsEf.Api/Dockerfile -t childobjectsef:1.0.3 .
+      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t childobjectsef:1.0.3 .
 
   codeql-analysis:    
     name: CodeQL analysis
@@ -76,10 +76,10 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Publish
-      run: dotnet publish ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o ChildObjectsEf.Api/bin/publish
+      run: dotnet publish src/ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o src/ChildObjectsEf.Api/bin/publish
 
     - name: Create docker image
-      run: docker build -f ChildObjectsEf.Api/Dockerfile -t ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.3 .
+      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.3 .
 
     - name: GitHub Container Registry login
       uses: docker/login-action@v1
@@ -110,10 +110,10 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Publish
-      run: dotnet publish ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o ChildObjectsEf.Api/bin/publish
+      run: dotnet publish src/ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o src/ChildObjectsEf.Api/bin/publish
 
     - name: Create docker image
-      run: docker build -f ChildObjectsEf.Api/Dockerfile -t 45862391/childobjectsef:1.0.3 .
+      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t 45862391/childobjectsef:1.0.3 .
 
     - name: Login to Docker Hub
       uses: docker/login-action@v1

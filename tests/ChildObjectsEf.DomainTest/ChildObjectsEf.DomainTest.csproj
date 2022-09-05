@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj" />
   </ItemGroup>
 
 </Project>

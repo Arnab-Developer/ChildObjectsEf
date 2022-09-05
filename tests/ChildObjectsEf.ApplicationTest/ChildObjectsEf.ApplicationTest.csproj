@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChildObjectsEf.Application\ChildObjectsEf.Application.csproj" />
+    <ProjectReference Include="..\..\src\ChildObjectsEf.Application\ChildObjectsEf.Application.csproj" />
   </ItemGroup>
 
 </Project>
