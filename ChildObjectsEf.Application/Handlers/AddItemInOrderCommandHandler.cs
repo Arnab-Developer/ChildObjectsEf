@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Application.Handlers;
 
-internal class AddItemInOrderCommandHandler : IRequestHandler<AddItemInOrderCommand, bool>
+public class AddItemInOrderCommandHandler : IRequestHandler<AddItemInOrderCommand, bool>
 {
     private readonly IChildObjectsEfRepo _childObjectsEfRepo;
 

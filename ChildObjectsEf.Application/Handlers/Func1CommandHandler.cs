@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Application.Handlers;
 
-internal class Func1CommandHandler : IRequestHandler<Func1Command, bool>
+public class Func1CommandHandler : IRequestHandler<Func1Command, bool>
 {
     private readonly IChildObjectsEfRepo _childObjectsEfRepo;
 

@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Application.Handlers;
 
-internal class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int>
+public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, int>
 {
     private readonly IChildObjectsEfRepo _childObjectsEfRepo;
 

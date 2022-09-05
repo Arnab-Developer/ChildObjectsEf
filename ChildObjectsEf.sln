@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Api", "ChildObjectsEf.Api\ChildObjectsEf.Api.csproj", "{2DE91B50-AD8B-4097-B8B8-277704A7D313}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.ApiTest", "ChildObjectsEf.ApiTest\ChildObjectsEf.ApiTest.csproj", "{C270F530-1E66-44C8-9C71-FA286E6974EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.ApplicationTest", "ChildObjectsEf.ApplicationTest\ChildObjectsEf.ApplicationTest.csproj", "{C270F530-1E66-44C8-9C71-FA286E6974EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildObjectsEf.Domain", "ChildObjectsEf.Domain\ChildObjectsEf.Domain.csproj", "{0B397CD2-1147-47CC-A87E-44766BEF8E72}"
 EndProject
@@ -15,12 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		.github\workflows\dependency-review.yml = .github\workflows\dependency-review.yml
 		.github\workflows\ci-cd.yml = .github\workflows\ci-cd.yml
+		.github\workflows\dependency-review.yml = .github\workflows\dependency-review.yml
 		LICENSE.txt = LICENSE.txt
 		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildObjectsEf.Application", "ChildObjectsEf.Application\ChildObjectsEf.Application.csproj", "{CE743053-E259-4F5D-9D29-BC250D245AED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{A85F1475-27BD-410F-B461-A3200A4E168D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A85F1475-27BD-410F-B461-A3200A4E168D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A85F1475-27BD-410F-B461-A3200A4E168D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE743053-E259-4F5D-9D29-BC250D245AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE743053-E259-4F5D-9D29-BC250D245AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE743053-E259-4F5D-9D29-BC250D245AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE743053-E259-4F5D-9D29-BC250D245AED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

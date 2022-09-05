@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChildObjectsEf.Application\ChildObjectsEf.Application.csproj" />
     <ProjectReference Include="..\ChildObjectsEf.Data\ChildObjectsEf.Data.csproj" />
   </ItemGroup>
 

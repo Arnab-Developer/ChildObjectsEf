@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Application.Commands;
 
-internal class DeleteItemFromOrderCommand : IRequest<bool>
+public class DeleteItemFromOrderCommand : IRequest<bool>
 {
     public int OrderId { get; set; }
 

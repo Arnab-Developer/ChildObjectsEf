@@ -1,6 +1,6 @@
-﻿namespace ChildObjectsEf.Api.Commands;
+﻿namespace ChildObjectsEf.Application.Commands;
 
-internal class UpdateItemInOrderCommand : IRequest<bool>
+public class UpdateItemInOrderCommand : IRequest<bool>
 {
     public int OrderId { get; set; }
 
