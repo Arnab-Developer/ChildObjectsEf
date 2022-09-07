@@ -65,7 +65,6 @@ jobs:
     needs: [build]
     permissions:
       packages: write
-      create_package: write
 
     steps:
     - name: Checkout
