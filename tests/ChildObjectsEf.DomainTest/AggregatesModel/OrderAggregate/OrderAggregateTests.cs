@@ -98,6 +98,30 @@ public class OrderAggregateTests
     }
 
     [Fact]
+    public void Can_UpdateItemName_ThroughException_WithNullItemName()
+    {
+        // Arrange
+        DateTime orderDate = Randomizer<DateTime>.Create();
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = Randomizer<int>.Create();
+        int itemId = Randomizer<int>.Create();
+
+        Order order = new(orderDate);
+        order.AddItem(itemName!, itemQuantity);
+
+        OrderItem item = order.Items.First(i => i.Name == itemName);
+        item.GetType().GetProperty("Id")!.SetValue(item, itemId);
+
+        // Act
+#pragma warning disable CS8625
+        Assert.Throws<ArgumentNullException>(() => order.UpdateItemName(itemId, null));
+#pragma warning restore CS8625
+
+        // Assert
+        Assert.Equal(itemName, order.Items.ElementAt(0).Name);
+    }
+
+    [Fact]
     public void Can_UpdateItemQuantity_UpdateItemQuantityProperly()
     {
         // Arrange
@@ -117,6 +141,28 @@ public class OrderAggregateTests
 
         // Assert
         Assert.Equal(105, order.Items.ElementAt(0).Quantity);
+    }
+
+    [Fact]
+    public void Can_UpdateItemQuantity_ThroughException_WithZeroItemQuantity()
+    {
+        // Arrange
+        DateTime orderDate = Randomizer<DateTime>.Create();
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = Randomizer<int>.Create();
+        int itemId = Randomizer<int>.Create();
+
+        Order order = new(orderDate);
+        order.AddItem(itemName, itemQuantity);
+
+        OrderItem item = order.Items.First(i => i.Name == itemName);
+        item.GetType().GetProperty("Id")!.SetValue(item, itemId);
+
+        // Act
+        Assert.Throws<ArgumentOutOfRangeException>(() => order.UpdateItemQuantity(itemId, 0));
+
+        // Assert
+        Assert.Equal(itemQuantity, order.Items.ElementAt(0).Quantity);
     }
 
     [Fact]
