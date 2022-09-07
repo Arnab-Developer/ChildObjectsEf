@@ -6,7 +6,7 @@ namespace ChildObjectsEf.ApplicationTest.Queries;
 public class GetOrderQueryTests
 {
     [Fact]
-    public async Task Can_GetOrderQuery_WorkProperly()
+    public async Task Can_GetOrderAsync_WorkProperly()
     {
         // Arrange
         Mock<DTOs::IOrderQuery> queryMock = new();
@@ -34,7 +34,7 @@ public class GetOrderQueryTests
 
         // Assert
         queryMock
-            .Verify(v => v.GetOrderAsync(orderId),
+            .Verify(v => v.GetOrderAsync(It.Is<int>(oi => oi == orderId)),
                 Times.Once);
 
         Assert.Equal(orderId, order.Id);
