@@ -6,7 +6,7 @@ namespace ChildObjectsEf.ApplicationTest.Queries;
 public class GetOrderQueryTests
 {
     [Fact]
-    public async Task Can_GetOrderQuery_WorkProperly()
+    public async Task Can_GetOrderAsync_WorkProperly()
     {
         // Arrange
         Mock<DTOs::IOrderQuery> queryMock = new();
