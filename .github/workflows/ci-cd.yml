@@ -65,6 +65,7 @@ jobs:
     needs: [build, codeql-analysis]
     permissions:
       packages: write
+      create_package: write
 
     steps:
     - name: Checkout
