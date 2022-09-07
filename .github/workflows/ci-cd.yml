@@ -36,7 +36,7 @@ jobs:
       run: dotnet publish src/ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o src/ChildObjectsEf.Api/bin/publish
 
     - name: Create docker image
-      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t childobjectsef:1.0.3 .
+      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t childobjectsef:1.0.4 .
 
   codeql-analysis:    
     name: CodeQL analysis
@@ -79,7 +79,7 @@ jobs:
       run: dotnet publish src/ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o src/ChildObjectsEf.Api/bin/publish
 
     - name: Create docker image
-      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.3 .
+      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.4 .
 
     - name: GitHub Container Registry login
       uses: docker/login-action@v1
@@ -89,7 +89,7 @@ jobs:
         password: ${{ secrets.PKG_PAT }}
 
     - name: Push docker image
-      run: docker push ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.3
+      run: docker push ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.4
 
   dockerhub-push:
     if: ${{ github.event_name == 'release' }}
@@ -113,7 +113,7 @@ jobs:
       run: dotnet publish src/ChildObjectsEf.Api/ChildObjectsEf.Api.csproj --configuration ${{ env.CONFIGURATION }} -o src/ChildObjectsEf.Api/bin/publish
 
     - name: Create docker image
-      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t 45862391/childobjectsef:1.0.3 .
+      run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t 45862391/childobjectsef:1.0.4 .
 
     - name: Login to Docker Hub
       uses: docker/login-action@v1
@@ -122,4 +122,4 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PWD }}
 
     - name: Push docker image
-      run: docker push 45862391/childobjectsef:1.0.3
+      run: docker push 45862391/childobjectsef:1.0.4
