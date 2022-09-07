@@ -38,25 +38,25 @@ jobs:
     - name: Create docker image
       run: docker build -f src/ChildObjectsEf.Api/Dockerfile -t childobjectsef:1.0.3 .
 
-  codeql-analysis:    
-    name: CodeQL analysis
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+  #codeql-analysis:    
+  #  name: CodeQL analysis
+  #  runs-on: ubuntu-latest
+  #  permissions:
+  #    security-events: write
+  #  steps:
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v2
         
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        with:
-          languages: csharp
+  #    - name: Initialize CodeQL
+  #      uses: github/codeql-action/init@v2
+  #      with:
+  #        languages: csharp
         
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v2
+  #    - name: Autobuild
+  #      uses: github/codeql-action/autobuild@v2
         
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+  #    - name: Perform CodeQL Analysis
+  #      uses: github/codeql-action/analyze@v2
 
   github-package-docker-push:
     #if: ${{ github.event_name == 'push' }}
