@@ -5,7 +5,7 @@ namespace ChildObjectsEf.DomainTest.AggregatesModel.OrderAggregate;
 public class OrderAggregateTests
 {
     [Fact]
-    public void Can_OrderAggregate_CreateOrder()
+    public void Can_CreateOrder_CreateOrderProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -18,7 +18,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_AddItemInOrder()
+    public void Can_AddItem_AddItemInOrderProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -37,7 +37,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_ThroughException_WithNullItemName()
+    public void Can_AddItem_ThrowException_WithNullItemName()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -58,7 +58,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_ThroughException_WithZeroItemQuantity()
+    public void Can_AddItem_ThrowException_WithZeroItemQuantity()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -76,7 +76,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_UpdateItemName()
+    public void Can_UpdateItemName_UpdateItemNameProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -98,7 +98,31 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_UpdateItemQuantity()
+    public void Can_UpdateItemName_ThrowException_WithNullItemName()
+    {
+        // Arrange
+        DateTime orderDate = Randomizer<DateTime>.Create();
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = Randomizer<int>.Create();
+        int itemId = Randomizer<int>.Create();
+
+        Order order = new(orderDate);
+        order.AddItem(itemName!, itemQuantity);
+
+        OrderItem item = order.Items.First(i => i.Name == itemName);
+        item.GetType().GetProperty("Id")!.SetValue(item, itemId);
+
+        // Act
+#pragma warning disable CS8625
+        Assert.Throws<ArgumentNullException>(() => order.UpdateItemName(itemId, null));
+#pragma warning restore CS8625
+
+        // Assert
+        Assert.Equal(itemName, order.Items.ElementAt(0).Name);
+    }
+
+    [Fact]
+    public void Can_UpdateItemQuantity_UpdateItemQuantityProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -120,7 +144,75 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_RemoveItemFromOrder()
+    public void Can_UpdateItemQuantity_ThrowException_WithZeroItemQuantity()
+    {
+        // Arrange
+        DateTime orderDate = Randomizer<DateTime>.Create();
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = Randomizer<int>.Create();
+        int itemId = Randomizer<int>.Create();
+
+        Order order = new(orderDate);
+        order.AddItem(itemName, itemQuantity);
+
+        OrderItem item = order.Items.First(i => i.Name == itemName);
+        item.GetType().GetProperty("Id")!.SetValue(item, itemId);
+
+        // Act
+        Assert.Throws<ArgumentOutOfRangeException>(() => order.UpdateItemQuantity(itemId, 0));
+
+        // Assert
+        Assert.Equal(itemQuantity, order.Items.ElementAt(0).Quantity);
+    }
+
+    [Fact]
+    public void Can_UpdateItemName_ThrowException_WithInvalidItemId()
+    {
+        // Arrange
+        DateTime orderDate = Randomizer<DateTime>.Create();
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = Randomizer<int>.Create();
+        int itemId = 2;
+        int invalidItemId = 4;
+
+        Order order = new(orderDate);
+        order.AddItem(itemName, itemQuantity);
+
+        OrderItem item = order.Items.First(i => i.Name == itemName);
+        item.GetType().GetProperty("Id")!.SetValue(item, itemId);
+
+        // Act
+        Assert.Throws<InvalidOperationException>(() => order.UpdateItemName(invalidItemId, "updated name"));
+
+        // Assert
+        Assert.Equal(itemName, order.Items.ElementAt(0).Name);
+    }
+
+    [Fact]
+    public void Can_UpdateItemQuantity_ThrowException_WithInvalidItemId()
+    {
+        // Arrange
+        DateTime orderDate = Randomizer<DateTime>.Create();
+        string itemName = Randomizer<string>.Create();
+        int itemQuantity = Randomizer<int>.Create();
+        int itemId = 2;
+        int invalidItemId = 4;
+
+        Order order = new(orderDate);
+        order.AddItem(itemName, itemQuantity);
+
+        OrderItem item = order.Items.First(i => i.Name == itemName);
+        item.GetType().GetProperty("Id")!.SetValue(item, itemId);
+
+        // Act
+        Assert.Throws<InvalidOperationException>(() => order.UpdateItemQuantity(invalidItemId, 105));
+
+        // Assert
+        Assert.Equal(itemQuantity, order.Items.ElementAt(0).Quantity);
+    }
+
+    [Fact]
+    public void Can_RemoveItem_RemoveItemFromOrderProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
