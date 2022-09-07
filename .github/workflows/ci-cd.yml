@@ -63,8 +63,8 @@ jobs:
     runs-on: ubuntu-latest
     name: GitHub package docker push
     needs: [build, codeql-analysis]
-    permissions:
-      packages: write
+    environment:
+      name: github_package
 
     steps:
     - name: Checkout
@@ -86,7 +86,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.PKG_PAT }}
 
     - name: Push docker image
       run: docker push ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.3
