@@ -5,7 +5,7 @@ namespace ChildObjectsEf.DomainTest.AggregatesModel.OrderAggregate;
 public class OrderAggregateTests
 {
     [Fact]
-    public void Can_OrderAggregate_CreateOrder()
+    public void Can_CreateOrder_CreateOrderProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -18,7 +18,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_AddItemInOrder()
+    public void Can_AddItem_AddItemInOrderProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -37,7 +37,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_ThroughException_WithNullItemName()
+    public void Can_AddItem_ThroughException_WithNullItemName()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -58,7 +58,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_ThroughException_WithZeroItemQuantity()
+    public void Can_AddItem_ThroughException_WithZeroItemQuantity()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -76,7 +76,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_UpdateItemName()
+    public void Can_UpdateItemName_UpdateItemNameProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -98,7 +98,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_UpdateItemQuantity()
+    public void Can_UpdateItemQuantity_UpdateItemQuantityProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -120,7 +120,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_OrderAggregate_RemoveItemFromOrder()
+    public void Can_RemoveItem_RemoveItemFromOrderProperly()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
