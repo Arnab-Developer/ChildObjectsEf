@@ -34,7 +34,7 @@ public class GetOrderQueryTests
 
         // Assert
         queryMock
-            .Verify(v => v.GetOrderAsync(orderId),
+            .Verify(v => v.GetOrderAsync(It.Is<int>(oi => oi == orderId)),
                 Times.Once);
 
         Assert.Equal(orderId, order.Id);
