@@ -37,7 +37,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_AddItem_ThroughException_WithNullItemName()
+    public void Can_AddItem_ThrowException_WithNullItemName()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -58,7 +58,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_AddItem_ThroughException_WithZeroItemQuantity()
+    public void Can_AddItem_ThrowException_WithZeroItemQuantity()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -98,7 +98,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_UpdateItemName_ThroughException_WithNullItemName()
+    public void Can_UpdateItemName_ThrowException_WithNullItemName()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -144,7 +144,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_UpdateItemQuantity_ThroughException_WithZeroItemQuantity()
+    public void Can_UpdateItemQuantity_ThrowException_WithZeroItemQuantity()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -166,7 +166,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_UpdateItemName_ThroughException_WithInvalidItemId()
+    public void Can_UpdateItemName_ThrowException_WithInvalidItemId()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
@@ -189,7 +189,7 @@ public class OrderAggregateTests
     }
 
     [Fact]
-    public void Can_UpdateItemQuantity_ThroughException_WithInvalidItemId()
+    public void Can_UpdateItemQuantity_ThrowException_WithInvalidItemId()
     {
         // Arrange
         DateTime orderDate = Randomizer<DateTime>.Create();
