@@ -64,7 +64,7 @@ jobs:
     name: GitHub package docker push
     needs: [build, codeql-analysis]
     permissions:
-      packages: admin
+      packages: write
 
     steps:
     - name: Checkout
