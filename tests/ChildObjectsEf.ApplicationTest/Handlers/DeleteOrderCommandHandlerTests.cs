@@ -1,4 +1,6 @@
-﻿namespace ChildObjectsEf.ApplicationTest.Handlers;
+﻿using ChildObjectsEf.Application.Commands;
+
+namespace ChildObjectsEf.ApplicationTest.Handlers;
 
 public class DeleteOrderCommandHandlerTests
 {
@@ -62,5 +64,45 @@ public class DeleteOrderCommandHandlerTests
         childObjectsEfRepoMock.VerifyNoOtherCalls();
 
         Assert.True(isSuccess);
+    }
+
+    [Fact]
+    public async Task Can_DeleteOrderCommandHandler_ThrowException_WithInvalidOrderId()
+    {
+        // Arrange        
+        int orderId = Randomizer<int>.Create();
+        DeleteOrderCommand deleteOrderCommand = new(orderId);
+        CancellationToken cancellationToken = new();
+        Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
+
+        IRequestHandler<DeleteOrderCommand, bool> requestHandler =
+            new DeleteOrderCommandHandler(childObjectsEfRepoMock.Object);        
+
+        childObjectsEfRepoMock
+            .Setup(s => s.GetOrderAsync(orderId))
+            .Throws<InvalidOperationException>();
+
+        childObjectsEfRepoMock
+            .SetupGet(s => s.UnitOfWork)
+            .Returns(new Mock<IUnitOfWork>().Object);
+
+        // Act
+        await Assert.ThrowsAsync<InvalidOperationException>(
+            () => requestHandler.Handle(deleteOrderCommand, cancellationToken));
+
+        // Assert
+        childObjectsEfRepoMock
+            .Verify(v => v.GetOrderAsync(orderId),
+                Times.Once);
+
+        childObjectsEfRepoMock
+            .Verify(v => v.DeleteOrder(It.IsAny<Order>()),
+                Times.Never);
+
+        childObjectsEfRepoMock
+            .Verify(v => v.UnitOfWork.SaveChangesAsync(),
+                Times.Never);
+
+        childObjectsEfRepoMock.VerifyNoOtherCalls();
     }
 }
