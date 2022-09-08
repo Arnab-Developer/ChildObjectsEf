@@ -31,4 +31,9 @@ public class ChildObjectsEfRepo : IChildObjectsEfRepo
         Order newOrder = entry.Entity;
         return newOrder.Id;
     }
+
+    void IChildObjectsEfRepo.DeleteOrder(Order order)
+    {
+        _childObjectsEfContext.Orders.Remove(order);
+    }
 }
