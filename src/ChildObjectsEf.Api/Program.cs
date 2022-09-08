@@ -86,4 +86,10 @@ app.MapPut("/func1", async (
     await mediator.Send(command);
 });
 
+app.MapDelete("/delete-order", async (IMediator mediator, int orderId) =>
+{
+    DeleteOrderCommand command = new(orderId);
+    await mediator.Send(command);
+});
+
 app.Run();
