@@ -10,7 +10,7 @@ public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, boo
     }
 
     async Task<bool> IRequestHandler<DeleteOrderCommand, bool>.Handle(
-        DeleteOrderCommand request, 
+        DeleteOrderCommand request,
         CancellationToken cancellationToken)
     {
         Order order = await _childObjectsEfRepo.GetOrderAsync(request.OrderId);
