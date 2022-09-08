@@ -52,9 +52,7 @@ public class DeleteOrderCommandHandlerTests
                 Times.Once);
 
         childObjectsEfRepoMock
-            .Verify(v => v.DeleteOrder(It.Is<Order>(o => o.Id == order.Id && 
-                                                         o.OrderDate == order.OrderDate &&
-                                                         o.Items.Equals(order.Items))),
+            .Verify(v => v.DeleteOrder(It.Is<Order>(o => o.Id == orderId && o.OrderDate == orderDateTime)),
                 Times.Once);
 
         childObjectsEfRepoMock
