@@ -1,6 +1,4 @@
-﻿using ChildObjectsEf.Application.Commands;
-
-namespace ChildObjectsEf.ApplicationTest.Handlers;
+﻿namespace ChildObjectsEf.ApplicationTest.Handlers;
 
 public class DeleteOrderCommandHandlerTests
 {
@@ -76,7 +74,7 @@ public class DeleteOrderCommandHandlerTests
         Mock<IChildObjectsEfRepo> childObjectsEfRepoMock = new();
 
         IRequestHandler<DeleteOrderCommand, bool> requestHandler =
-            new DeleteOrderCommandHandler(childObjectsEfRepoMock.Object);        
+            new DeleteOrderCommandHandler(childObjectsEfRepoMock.Object);
 
         childObjectsEfRepoMock
             .Setup(s => s.GetOrderAsync(orderId))
