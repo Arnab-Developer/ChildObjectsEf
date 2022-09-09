@@ -3,11 +3,11 @@
 public class GetOrderByDateQueryTests
 {
     [Fact]
-    public async Task Can_GetOrderAsync_WorkProperly()
+    public async Task Can_GetOrderByDateAsync_WorkProperly()
     {
         // Arrange
         Mock<DTOs::IOrderQuery> queryMock = new();
-        IGetOrderQuery getOrderQuery = new GetOrderQuery(queryMock.Object);
+        IGetOrderByDateQuery getOrderByDateQuery = new GetOrderByDateQuery(queryMock.Object);
         int orderId = Randomizer<int>.Create();
         DateTime orderDate = Randomizer<DateTime>.Create();
 
@@ -23,15 +23,15 @@ public class GetOrderByDateQueryTests
         };
 
         queryMock
-            .Setup(s => s.GetOrderAsync(orderId))
+            .Setup(s => s.GetOrderByDateAsync(orderDate))
             .ReturnsAsync(order);
 
         // Act
-        await getOrderQuery.GetOrderAsync(orderId);
+        await getOrderByDateQuery.GetOrderByDateAsync(orderDate);
 
         // Assert
         queryMock
-            .Verify(v => v.GetOrderAsync(It.Is<int>(oi => oi == orderId)),
+            .Verify(v => v.GetOrderByDateAsync(It.Is<DateTime>(oi => oi == orderDate)),
                 Times.Once);
 
         Assert.Equal(orderId, order.Id);
