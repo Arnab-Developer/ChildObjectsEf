@@ -41,16 +41,13 @@ public class OrderQuery : DTOs::IOrderQuery
             await con.OpenAsync();
         }
 
-        const string query =
-            @"select Id, OrderDate from Orders where OrderDate = @OrderDate
-              select Id, Name, Quantity from OrderItems where OrderId = @Id";
-
-        using SqlMapper.GridReader reader = await con.QueryMultipleAsync(query, new { OrderDate = orderDate });
-        IEnumerable<DTOs::Order> orders = await reader.ReadAsync<DTOs::Order>();
+        const string orderQuery = "select Id, OrderDate from Orders where OrderDate = @OrderDate";
+        IEnumerable<DTOs::Order> orders = await con.QueryAsync<DTOs::Order>(orderQuery, new { OrderDate = orderDate });
 
         foreach (DTOs::Order order in orders)
         {
-            order.Items = await reader.ReadAsync<DTOs::OrderItem>();
+            const string orderItemQuery = "select Id, Name, Quantity from OrderItems where OrderId = @Id";
+            order.Items = await con.QueryAsync<DTOs::OrderItem>(orderItemQuery, new { Id = order.Id });
         }
 
         return orders;
