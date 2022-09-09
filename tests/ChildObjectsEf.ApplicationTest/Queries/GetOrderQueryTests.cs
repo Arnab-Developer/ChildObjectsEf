@@ -1,7 +1,4 @@
-﻿using ChildObjectsEf.Application.Queries;
-using DTOs = ChildObjectsEf.Domain.DTOs;
-
-namespace ChildObjectsEf.ApplicationTest.Queries;
+﻿namespace ChildObjectsEf.ApplicationTest.Queries;
 
 public class GetOrderQueryTests
 {

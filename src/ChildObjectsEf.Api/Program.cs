@@ -13,6 +13,7 @@ builder.Services.AddMediatR(typeof(CreateOrderCommand));
 builder.Services.AddTransient<IChildObjectsEfRepo, ChildObjectsEfRepo>();
 builder.Services.AddSqlServer<ChildObjectsEfContext>(builder.Configuration.GetConnectionString("ChildObjectsEfConnection"));
 builder.Services.AddTransient<IGetOrderQuery, GetOrderQuery>();
+builder.Services.AddTransient<IGetOrderByDateQuery, GetOrderByDateQuery>();
 builder.Services.AddTransient<DTOs::IOrderQuery>(options =>
 {
     string constr = builder.Configuration.GetConnectionString("ChildObjectsEfConnection");
@@ -32,6 +33,12 @@ app.MapGet("/get-order", async (IGetOrderQuery getOrderQuery, int orderId) =>
 {
     DTOs::Order order = await getOrderQuery.GetOrderAsync(orderId);
     return order;
+});
+
+app.MapGet("/get-orders-by-date", async (IGetOrderByDateQuery getOrderByDateQuery, DateTime orderDate) =>
+{
+    IEnumerable<DTOs::Order> orders = await getOrderByDateQuery.GetOrderByDateAsync(orderDate);
+    return orders;
 });
 
 app.MapPost("/create-order", async (IMediator mediator, string dateTime) =>
