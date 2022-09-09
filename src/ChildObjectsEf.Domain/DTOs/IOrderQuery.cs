@@ -3,4 +3,6 @@
 public interface IOrderQuery
 {
     public Task<Order> GetOrderAsync(int orderId);
+
+    public Task<Order> GetOrderByDateAsync(DateTime orderDate);
 }
