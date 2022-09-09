@@ -32,7 +32,7 @@ public class OrderQuery : DTOs::IOrderQuery
         return order;
     }
 
-    async Task<DTOs::Order> DTOs::IOrderQuery.GetOrderByDateAsync(DateTime orderDate)
+    async Task<IEnumerable<DTOs::Order>> DTOs::IOrderQuery.GetOrderByDateAsync(DateTime orderDate)
     {
         using SqlConnection con = new(_constr);
 
@@ -46,8 +46,13 @@ public class OrderQuery : DTOs::IOrderQuery
               select Id, Name, Quantity from OrderItems where OrderId = @Id";
 
         using SqlMapper.GridReader reader = await con.QueryMultipleAsync(query, new { OrderDate = orderDate });
-        DTOs::Order order = await reader.ReadSingleAsync<DTOs::Order>();
-        order.Items = await reader.ReadAsync<DTOs::OrderItem>();
-        return order;
+        IEnumerable<DTOs::Order> orders = await reader.ReadAsync<DTOs::Order>();
+
+        foreach (DTOs::Order order in orders)
+        {
+            order.Items = await reader.ReadAsync<DTOs::OrderItem>();
+        }
+
+        return orders;
     }
 }

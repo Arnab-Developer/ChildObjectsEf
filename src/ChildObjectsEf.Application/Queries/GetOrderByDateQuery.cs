@@ -9,9 +9,9 @@ public class GetOrderByDateQuery : IGetOrderByDateQuery
         _orderQuery = orderQuery;
     }
 
-    async Task<DTOs::Order> IGetOrderByDateQuery.GetOrderByDateAsync(DateTime orderDate)
+    async Task<IEnumerable<DTOs::Order>> IGetOrderByDateQuery.GetOrderByDateAsync(DateTime orderDate)
     {
-        DTOs::Order order = await _orderQuery.GetOrderByDateAsync(orderDate);
-        return order;
+        IEnumerable<DTOs::Order> orders = await _orderQuery.GetOrderByDateAsync(orderDate);
+        return orders;
     }
 }

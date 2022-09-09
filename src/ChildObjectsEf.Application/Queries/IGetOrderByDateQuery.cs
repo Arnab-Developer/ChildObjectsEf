@@ -2,5 +2,5 @@
 
 public interface IGetOrderByDateQuery
 {
-    public Task<DTOs::Order> GetOrderByDateAsync(DateTime orderDate);
+    public Task<IEnumerable<DTOs::Order>> GetOrderByDateAsync(DateTime orderDate);
 }

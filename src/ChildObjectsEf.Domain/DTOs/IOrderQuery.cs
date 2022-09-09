@@ -4,5 +4,5 @@ public interface IOrderQuery
 {
     public Task<Order> GetOrderAsync(int orderId);
 
-    public Task<Order> GetOrderByDateAsync(DateTime orderDate);
+    public Task<IEnumerable<Order>> GetOrderByDateAsync(DateTime orderDate);
 }
