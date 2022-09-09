@@ -1,6 +1,6 @@
 ﻿namespace ChildObjectsEf.ApplicationTest.Queries;
 
-public class GetOrderQueryTests
+public class GetOrderByDateQueryTests
 {
     [Fact]
     public async Task Can_GetOrderAsync_WorkProperly()
