@@ -56,7 +56,7 @@ public class ChildObjectsEfRepoTests
     }
 
     [Fact]
-    public async Task Can_CreateOrderAsync_ReturnProperData()
+    public async Task Can_CreateOrderAsync_CreateProperData()
     {
         // Arrange
         DateTime orderDateTime = Randomizer<DateTime>.Create();
