@@ -16,7 +16,13 @@ builder.Services.AddTransient<IGetOrderQuery, GetOrderQuery>();
 builder.Services.AddTransient<IGetOrderByDateQuery, GetOrderByDateQuery>();
 builder.Services.AddTransient<DTOs::IOrderQuery>(options =>
 {
-    string constr = builder.Configuration.GetConnectionString("ChildObjectsEfConnection");
+    string? constr = builder.Configuration.GetConnectionString("ChildObjectsEfConnection");
+
+    if (string.IsNullOrEmpty(constr))
+    {
+        throw new InvalidOperationException("Invalid connection string");
+    }
+
     OrderQuery orderQuery = new(constr);
     return orderQuery;
 });
