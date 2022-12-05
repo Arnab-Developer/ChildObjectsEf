@@ -59,10 +59,12 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
   github-package-docker-push:
-    if: ${{ github.event_name == 'push' }}
+    #if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     name: GitHub package docker push
     needs: [build, codeql-analysis]
+    permissions:
+      packages: write
     environment:
       name: github_package
 
@@ -86,7 +88,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.PKG_PAT }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Push docker image
       run: docker push ghcr.io/arnab-developer/childobjectsef/childobjectsef:1.0.5
